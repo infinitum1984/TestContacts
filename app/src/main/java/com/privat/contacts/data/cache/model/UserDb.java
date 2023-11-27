@@ -1,7 +1,10 @@
 package com.privat.contacts.data.cache.model;
 
+import androidx.room.Entity;
+
+@Entity
 public class UserDb {
-    public String id;
+    public int id;
     public String uid;
     public String password;
     public String firstName;

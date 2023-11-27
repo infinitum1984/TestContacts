@@ -2,8 +2,8 @@ package com.privat.contacts.data.cloud.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EmploymentNet {
-    String title;
+class EmploymentNet {
+    public String title;
     @SerializedName("key_skill")
-    String keySkill;
+    public String keySkill;
 }

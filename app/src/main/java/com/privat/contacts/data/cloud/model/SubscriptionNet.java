@@ -2,10 +2,10 @@ package com.privat.contacts.data.cloud.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SubscriptionNet {
-    String plan;
-    String status;
+class SubscriptionNet {
+    public String plan;
+    public String status;
     @SerializedName("payment_method")
-    String paymentMethod;
-    String term;
+    public String paymentMethod;
+    public String term;
 }
