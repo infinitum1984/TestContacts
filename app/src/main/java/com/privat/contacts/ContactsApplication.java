@@ -1,5 +1,7 @@
 package com.privat.contacts;
 
+import com.privat.contacts.di.DaggerAppComponent;
+
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
 

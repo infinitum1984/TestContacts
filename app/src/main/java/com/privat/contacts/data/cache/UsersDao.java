@@ -11,7 +11,7 @@ import io.reactivex.Observable;
 import io.reactivex.Single;
 
 @Dao
-public interface ContactsDao {
+public interface UsersDao {
     @Query("SELECT * FROM userdb")
     Observable<List<UserFullDb>> selectFavoriteUsers();
 

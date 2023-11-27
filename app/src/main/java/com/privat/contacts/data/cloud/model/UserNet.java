@@ -3,26 +3,30 @@ package com.privat.contacts.data.cloud.model;
 import com.google.gson.annotations.SerializedName;
 
 public class UserNet {
-    public String id;
-    public String uid;
-    public String password;
+    private String id;
+    private String uid;
+    private String password;
     @SerializedName("first_name")
-    public String firstName;
+    private String firstName;
     @SerializedName("last_name")
-    public String lastName;
-    public String username;
-    public String email;
-    public String avatar;
-    public String gender;
+    private String lastName;
+    private String username;
+    private String email;
+    private String avatar;
+    private String gender;
     @SerializedName("phone_number")
-    public String phoneNumber;
+    private String phoneNumber;
     @SerializedName("social_insurance_number")
-    public String socialInsuranceNumber;
+    private String socialInsuranceNumber;
     @SerializedName("date_of_birth")
-    public String dateOfBirth;
-    public EmploymentNet employment;
-    public AddressNet address;
+    private String dateOfBirth;
+    private EmploymentNet employment;
+    private AddressNet address;
     @SerializedName("credit_card")
-    public CreditCardNet creditCard;
-    public SubscriptionNet subscription;
+    private CreditCardNet creditCard;
+    private SubscriptionNet subscription;
+
+    public String data() {
+        return firstName;
+    }
 }

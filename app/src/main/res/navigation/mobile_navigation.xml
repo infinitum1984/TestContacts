@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.privat.contacts.ui.dashboard.DashboardFragment"
+        android:name="com.privat.contacts.ui.users.UsersFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 

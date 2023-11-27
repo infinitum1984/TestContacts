@@ -4,7 +4,7 @@ package com.privat.contacts.data.cache.database;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import com.privat.contacts.data.cache.ContactsDao;
+import com.privat.contacts.data.cache.UsersDao;
 import com.privat.contacts.data.cache.model.AddressDb;
 import com.privat.contacts.data.cache.model.CoordinatesDb;
 import com.privat.contacts.data.cache.model.CreditCardDb;
@@ -23,5 +23,5 @@ import com.privat.contacts.data.cache.model.UserDb;
 public abstract class AppDatabase extends RoomDatabase {
     final static int VERSION = 0;
 
-    abstract ContactsDao provideContactsDao();
+    public abstract UsersDao provideUsersDao();
 }

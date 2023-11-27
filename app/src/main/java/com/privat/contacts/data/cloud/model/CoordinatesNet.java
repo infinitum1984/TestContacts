@@ -1,6 +1,11 @@
 package com.privat.contacts.data.cloud.model;
 
 class CoordinatesNet {
-    public double lat;
-    public double lng;
+    private final double lat;
+    private final double lng;
+
+    public CoordinatesNet(double lat, double lng) {
+        this.lat = lat;
+        this.lng = lng;
+    }
 }

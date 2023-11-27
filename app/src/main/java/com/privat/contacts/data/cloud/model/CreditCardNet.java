@@ -4,5 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 class CreditCardNet {
     @SerializedName("cc_number")
-    public String ccNumber;
+    private final String ccNumber;
+
+    public CreditCardNet(String ccNumber) {
+        this.ccNumber = ccNumber;
+    }
+
 }

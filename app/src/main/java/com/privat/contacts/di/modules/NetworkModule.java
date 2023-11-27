@@ -1,6 +1,6 @@
 package com.privat.contacts.di.modules;
 
-import javax.inject.Singleton;
+import com.privat.contacts.data.cloud.NetworkApiService;
 
 import dagger.Module;
 import dagger.Provides;
@@ -10,19 +10,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class NetworkModule {
-    @Singleton
     @Provides
     public RxJava2CallAdapterFactory provideRxJava2CallAdapterFactory() {
         return RxJava2CallAdapterFactory.create();
     }
 
-    @Singleton
     @Provides
     public GsonConverterFactory provideGsonConverterFactory() {
         return GsonConverterFactory.create();
     }
 
-    @Singleton
     @Provides
     public Retrofit provideRetrofit(GsonConverterFactory gsonConverterFactory,
                                     RxJava2CallAdapterFactory rxJava2CallAdapterFactory) {
@@ -32,4 +29,10 @@ public class NetworkModule {
                 .baseUrl("https://random-data-api.com/api/v2/")
                 .build();
     }
+
+    @Provides
+    public NetworkApiService provideNetworkApiService(Retrofit retrofit) {
+        return retrofit.create(NetworkApiService.class);
+    }
+
 }
