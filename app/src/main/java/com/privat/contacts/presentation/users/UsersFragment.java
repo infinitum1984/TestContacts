@@ -1,5 +1,7 @@
 package com.privat.contacts.presentation.users;
 
+import static androidx.navigation.fragment.FragmentKt.findNavController;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,8 +10,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.privat.contacts.R;
 import com.privat.contacts.databinding.FragmentUsersBinding;
 import com.privat.contacts.presentation.users.model.UserItemUi;
 
@@ -25,6 +30,7 @@ public class UsersFragment extends DaggerFragment implements UsersView {
     private FragmentUsersBinding binding;
     private final UsersAdapter usersAdapter = new UsersAdapter(favoriteClickId -> {
         usersPresenter.changeFavorite(favoriteClickId);
+        Navigation.findNavController(requireActivity(),R.id.nav_host_fragment_activity_main).navigate(R.id.action_bottomNavigationHostFragment_to_detailsFragment);
     });
 
     public View onCreateView(@NonNull LayoutInflater inflater,

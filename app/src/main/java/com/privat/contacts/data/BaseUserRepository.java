@@ -50,18 +50,7 @@ public class BaseUserRepository implements UsersRepository {
 
     @Override
     public Observable<List<UserDomain>> networkUsers() {
-        return Observable.zip(favoriteUsers(), networkUsersSubject, (dbList, netList) -> {
-            ArrayList<UserDomain> newItems = new ArrayList();
-            newItems.addAll(netList);
-            for (int i = 0; i < newItems.size(); i++) {
-                for (int j = 0; j < dbList.size(); j++) {
-                    if (newItems.get(i).id() == dbList.get(j).id()) {
-                        newItems.set(i, dbList.get(j));
-                    }
-                }
-            }
-            return newItems;
-        });
+        return networkUsersSubject;
     }
 
     @Override
@@ -83,7 +72,6 @@ public class BaseUserRepository implements UsersRepository {
     @Override
     public Completable changeUserFavorite(int userId) {
         return contactsDao.userExists(userId).flatMapCompletable(exists -> {
-            Log.d("BaseUserRepository", ": " + userId + " " + exists);
             if (exists)
                 return contactsDao.changeUserFavorite(userId);
             else
