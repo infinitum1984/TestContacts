@@ -1,9 +1,9 @@
 package com.privat.contacts.di.modules;
 
 import com.privat.contacts.MainActivity;
-import com.privat.contacts.ui.users.BaseUsersPresenter;
-import com.privat.contacts.ui.users.UsersFragment;
-import com.privat.contacts.ui.users.UsersPresenter;
+import com.privat.contacts.presentation.users.BaseUsersPresenter;
+import com.privat.contacts.presentation.users.UsersFragment;
+import com.privat.contacts.presentation.users.UsersPresenter;
 
 import dagger.Binds;
 import dagger.Module;

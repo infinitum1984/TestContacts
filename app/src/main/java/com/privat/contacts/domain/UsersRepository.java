@@ -1,5 +1,7 @@
 package com.privat.contacts.domain;
 
+import com.privat.contacts.domain.model.UserDomain;
+
 import java.util.List;
 
 import io.reactivex.Completable;

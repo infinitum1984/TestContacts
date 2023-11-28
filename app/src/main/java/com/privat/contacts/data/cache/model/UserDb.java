@@ -18,6 +18,9 @@ public class UserDb {
     private final String phoneNumber;
     private final String socialInsuranceNumber;
     private final String dateOfBirth;
+    private final String cardNumber;
+    private final boolean favorite;
+
 
     public UserDb(int id,
                   String uid,
@@ -30,7 +33,7 @@ public class UserDb {
                   String gender,
                   String phoneNumber,
                   String socialInsuranceNumber,
-                  String dateOfBirth) {
+                  String dateOfBirth, String cardNumber, boolean favorite) {
         this.id = id;
         this.uid = uid;
         this.password = password;
@@ -43,6 +46,8 @@ public class UserDb {
         this.phoneNumber = phoneNumber;
         this.socialInsuranceNumber = socialInsuranceNumber;
         this.dateOfBirth = dateOfBirth;
+        this.cardNumber = cardNumber;
+        this.favorite = favorite;
     }
 
     public int getId() {
@@ -91,5 +96,13 @@ public class UserDb {
 
     public String getUsername() {
         return username;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
     }
 }

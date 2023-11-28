@@ -1,11 +1,10 @@
 package com.privat.contacts.data;
 
-import android.util.Log;
-
 import com.privat.contacts.data.cache.UsersDao;
 import com.privat.contacts.data.cloud.NetworkApiService;
-import com.privat.contacts.domain.UserDomain;
+import com.privat.contacts.data.cloud.model.UserNet;
 import com.privat.contacts.domain.UsersRepository;
+import com.privat.contacts.domain.model.UserDomain;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,32 +13,30 @@ import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.ReplaySubject;
 
 public class BaseUserRepository implements UsersRepository {
     private final NetworkApiService networkApiService;
     private final UsersDao contactsDao;
-    //    private final Mapper<UserNet, UserDomain> mapperNetDomain;
-//    private final Mapper<UserFullDb, UserDomain> mapperDbDomain;
+
+    private final UserNet.Mapper<UserDomain> userDomainMapper;
     private final LinkedList<UserDomain> networkUsersList = new LinkedList();
-    private final PublishSubject<List<UserDomain>> networkUsersSubject = PublishSubject.create();
+    private final ReplaySubject<List<UserDomain>> networkUsersSubject = ReplaySubject.createWithSize(1);
 
     @Inject
     BaseUserRepository(NetworkApiService networkApiService,
-                       UsersDao usersDao
-    ) {
+                       UsersDao usersDao,
+                       UserNet.Mapper<UserDomain> userDomainMapper) {
         this.networkApiService = networkApiService;
         this.contactsDao = usersDao;
-//        this.mapperNetDomain = mapperNetDomain;
-//        this.mapperDbDomain = mapperDbDomain;
+        this.userDomainMapper = userDomainMapper;
     }
 
     @Override
     public Completable fetchNewUser() {
         return networkApiService.getNewUser().flatMapCompletable(userNet -> {
-//            networkUsersList.add(mapperNetDomain.map(userNet));
-//            networkUsersSubject.onNext(networkUsersList);
-            Log.d("BaseUserRepository", "user : " + userNet.data() + " " + userNet);
+            networkUsersList.add(userNet.map(userDomainMapper));
+            networkUsersSubject.onNext(networkUsersList);
             return Completable.complete();
         });
     }

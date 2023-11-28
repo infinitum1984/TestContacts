@@ -2,7 +2,7 @@ package com.privat.contacts.data.cloud.model;
 
 import com.google.gson.annotations.SerializedName;
 
-class SubscriptionNet {
+public class SubscriptionNet {
     private final String plan;
     private final String status;
     @SerializedName("payment_method")
@@ -17,5 +17,19 @@ class SubscriptionNet {
         this.status = status;
         this.paymentMethod = paymentMethod;
         this.term = term;
+    }
+
+    public <T> T map(Mapper<T> mapper) {
+        return mapper.map(plan,
+                status,
+                paymentMethod,
+                term);
+    }
+
+    public interface Mapper<T> {
+        T map(String plan,
+              String status,
+              String paymentMethod,
+              String term);
     }
 }

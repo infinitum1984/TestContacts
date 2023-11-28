@@ -29,6 +29,25 @@ public class AddressNet {
         this.state = state;
         this.country = country;
         this.coordinates = coordinates;
+    }
 
+    public <T> T map(Mapper<T> mapper) {
+        return mapper.map(city,
+                streetName,
+                streetAddress,
+                zipCode,
+                state,
+                country,
+                coordinates);
+    }
+
+    public interface Mapper<T> {
+        T map(String city,
+              String streetName,
+              String streetAddress,
+              String zipCode,
+              String state,
+              String country,
+              CoordinatesNet coordinates);
     }
 }

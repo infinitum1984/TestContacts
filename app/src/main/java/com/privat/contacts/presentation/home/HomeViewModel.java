@@ -1,4 +1,4 @@
-package com.privat.contacts.ui.home;
+package com.privat.contacts.presentation.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
