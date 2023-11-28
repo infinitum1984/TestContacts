@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public interface UserDomain {
+    int id();
+
     @NotNull
     <T> T map(Mapper<T> mapper);
 

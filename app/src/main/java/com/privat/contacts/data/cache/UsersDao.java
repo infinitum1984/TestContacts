@@ -24,6 +24,10 @@ public interface UsersDao {
     @Query("SELECT * FROM userdb WHERE favorite=1")
     Observable<List<UserFullDb>> selectFavoriteUsers();
 
+    @Transaction
+    @Query("SELECT * FROM userdb WHERE favorite=1")
+    Single<List<UserFullDb>> selectFavoriteUsersSingle();
+
     @Query("SELECT EXISTS(SELECT * FROM userdb WHERE id=:id)")
     Single<Boolean> userExists(int id);
 

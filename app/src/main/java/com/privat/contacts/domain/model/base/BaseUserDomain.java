@@ -64,6 +64,11 @@ public class BaseUserDomain implements UserDomain {
     }
 
     @Override
+    public int id() {
+        return this.id;
+    }
+
+    @Override
     public <T> T map(Mapper<T> mapper) {
         return mapper.map(id,
                 uid,

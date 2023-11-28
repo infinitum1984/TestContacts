@@ -9,6 +9,7 @@ import com.privat.contacts.data.cloud.model.UserNet;
 import com.privat.contacts.domain.UsersRepository;
 import com.privat.contacts.domain.model.UserDomain;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,7 +50,18 @@ public class BaseUserRepository implements UsersRepository {
 
     @Override
     public Observable<List<UserDomain>> networkUsers() {
-        return networkUsersSubject;
+        return Observable.zip(favoriteUsers(), networkUsersSubject, (dbList, netList) -> {
+            ArrayList<UserDomain> newItems = new ArrayList();
+            newItems.addAll(netList);
+            for (int i = 0; i < newItems.size(); i++) {
+                for (int j = 0; j < dbList.size(); j++) {
+                    if (newItems.get(i).id() == dbList.get(j).id()) {
+                        newItems.set(i, dbList.get(j));
+                    }
+                }
+            }
+            return newItems;
+        });
     }
 
     @Override
