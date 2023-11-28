@@ -4,6 +4,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.function.Consumer;
+
 public interface UserItemUi {
     void loadAvatar(ImageView imageView);
 
@@ -11,5 +13,5 @@ public interface UserItemUi {
 
     void showText(TextView textView);
 
-    void showFavorite(ImageButton imageButton);
+    void showFavorite(ImageButton imageButton, Consumer<Integer> clickAction);
 }

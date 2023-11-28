@@ -16,11 +16,11 @@ import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 
 public class BaseUsersPresenter implements UsersPresenter {
+
     private final UsersRepository usersRepository;
     private final UserDomain.Mapper<UserItemUi> userItemUiMapper;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private UsersView mvpView;
-
     @Inject
     BaseUsersPresenter(UsersRepository usersRepository, UserDomain.Mapper<UserItemUi> userItemUiMapper) {
         this.usersRepository = usersRepository;
@@ -33,8 +33,7 @@ public class BaseUsersPresenter implements UsersPresenter {
         startObserve();
     }
 
-    @Override
-    public void startObserve() {
+    private void startObserve() {
         compositeDisposable.add(usersRepository.networkUsers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -69,5 +68,12 @@ public class BaseUsersPresenter implements UsersPresenter {
                 }, error -> {
                     Log.d("BaseUsersPresenter", ": " + error.getMessage());
                 }));
+    }
+
+    @Override
+    public void changeFavorite(int userId) {
+        compositeDisposable.add(usersRepository.changeUserFavorite(userId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe());
     }
 }

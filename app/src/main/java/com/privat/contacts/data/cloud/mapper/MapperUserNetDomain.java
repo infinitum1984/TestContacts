@@ -59,9 +59,9 @@ public class MapperUserNetDomain implements UserNet.Mapper<UserDomain> {
                 dateOfBirth,
                 creditCard.cardNumber(),
                 false,
-                address.map(addressDomainMapper),
-                employment.map(employmentDomainMapper),
-                subscription.map(subscriptionDomainMapper)
+                address.map(id, addressDomainMapper),
+                employment.map(id, employmentDomainMapper),
+                subscription.map(id, subscriptionDomainMapper)
         );
     }
 }

@@ -8,9 +8,11 @@ public interface SubscriptionDomain {
 
     interface Mapper<T> {
         @NotNull
-        <T> T map(String plan,
-                  String status,
-                  String paymentMethod,
-                  String term);
+        T map(
+                int userId,
+                String plan,
+                String status,
+                String paymentMethod,
+                String term);
     }
 }

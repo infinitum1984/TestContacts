@@ -13,7 +13,7 @@ public class MapperSubscriptionNetDomain implements SubscriptionNet.Mapper<Subsc
     }
 
     @Override
-    public SubscriptionDomain map(String plan, String status, String paymentMethod, String term) {
-        return new BaseSubscriptionDomain(plan, status, paymentMethod, term);
+    public SubscriptionDomain map(int userId, String plan, String status, String paymentMethod, String term) {
+        return new BaseSubscriptionDomain(userId, plan, status, paymentMethod, term);
     }
 }

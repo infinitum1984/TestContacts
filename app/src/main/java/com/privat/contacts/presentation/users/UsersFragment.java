@@ -20,10 +20,12 @@ import javax.inject.Inject;
 import dagger.android.support.DaggerFragment;
 
 public class UsersFragment extends DaggerFragment implements UsersView {
-    private final UsersAdapter usersAdapter = new UsersAdapter();
     @Inject
     public UsersPresenter usersPresenter;
     private FragmentUsersBinding binding;
+    private final UsersAdapter usersAdapter = new UsersAdapter(favoriteClickId -> {
+        usersPresenter.changeFavorite(favoriteClickId);
+    });
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

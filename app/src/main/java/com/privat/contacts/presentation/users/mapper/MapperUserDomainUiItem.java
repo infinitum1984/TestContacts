@@ -37,7 +37,7 @@ public class MapperUserDomainUiItem implements UserDomain.Mapper<UserItemUi> {
                           EmploymentDomain employment,
                           SubscriptionDomain subscription) {
         return new BaseUserItemUi(
-                firstName + " " + lastName, phoneNumber, favorite, avatar
+                id, firstName + " " + lastName, phoneNumber, favorite, avatar
         );
     }
 }

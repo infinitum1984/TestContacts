@@ -8,13 +8,15 @@ public interface AddressDomain {
 
     interface Mapper<T> {
         @NotNull
-        <T> T map(String city,
-                  String streetName,
-                  String streetAddress,
-                  String zipCode,
-                  String state,
-                  String country,
-                  double coordinateLat,
-                  double coordinateLng);
+        T map(
+                int userId,
+                String city,
+                String streetName,
+                String streetAddress,
+                String zipCode,
+                String state,
+                String country,
+                double coordinateLat,
+                double coordinateLng);
     }
 }

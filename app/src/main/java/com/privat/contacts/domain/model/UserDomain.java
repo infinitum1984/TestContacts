@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public interface UserDomain {
+    @NotNull
+    <T> T map(Mapper<T> mapper);
+
     static <T> List<T> mapList(List<UserDomain> userDomainList, Mapper<T> mapper) {
         LinkedList<T> newList = new LinkedList();
         for (UserDomain item :
@@ -14,9 +17,6 @@ public interface UserDomain {
         }
         return newList;
     }
-
-    @NotNull
-    <T> T map(Mapper<T> mapper);
 
     interface Mapper<T> {
         @NotNull
@@ -38,4 +38,6 @@ public interface UserDomain {
               EmploymentDomain employment,
               SubscriptionDomain subscription);
     }
+
+    boolean sameId(int userId);
 }

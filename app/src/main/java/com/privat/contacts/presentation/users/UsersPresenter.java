@@ -5,5 +5,5 @@ import com.privat.contacts.base.presentation.Presenter;
 public interface UsersPresenter extends Presenter<UsersView> {
     void fetchNewUser();
 
-    void startObserve();
+    void changeFavorite(int userId);
 }

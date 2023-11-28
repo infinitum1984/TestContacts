@@ -12,11 +12,11 @@ public class EmploymentNet {
         this.keySkill = keySkill;
     }
 
-    public <T> T map(Mapper<T> mapper) {
-        return mapper.map(title, keySkill);
+    public <T> T map(int userId, Mapper<T> mapper) {
+        return mapper.map(userId, title, keySkill);
     }
 
     public interface Mapper<T> {
-        T map(String title, String keySkill);
+        T map(int userId, String title, String keySkill);
     }
 }

@@ -3,17 +3,51 @@ package com.privat.contacts.data.cache.model;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+import com.privat.contacts.data.cache.UsersDao;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import io.reactivex.Completable;
+
 public class UserFullDb {
     @Embedded
-    public UserDb user;
+    private final UserDb user;
     @Relation(parentColumn = "id", entityColumn = "userId")
-    public AddressDb address;
+    private final AddressDb address;
     @Relation(parentColumn = "id", entityColumn = "userId")
-    public CoordinatesDb coordinates;
+    private final EmploymentDb employment;
     @Relation(parentColumn = "id", entityColumn = "userId")
-    public CreditCardDb creditCard;
-    @Relation(parentColumn = "id", entityColumn = "userId")
-    public EmploymentDb employment;
-    @Relation(parentColumn = "id", entityColumn = "userId")
-    public SubscriptionDb subscription;
+    private final SubscriptionDb subscription;
+
+    public UserFullDb(UserDb user, AddressDb address, EmploymentDb employment, SubscriptionDb subscription) {
+        this.user = user;
+        this.address = address;
+        this.employment = employment;
+        this.subscription = subscription;
+    }
+
+    public static <T> List<T> mapList(List<UserFullDb> userFullDbs, UserFullDb.Mapper<T> mapper) {
+        LinkedList<T> newList = new LinkedList();
+        for (UserFullDb item :
+                userFullDbs) {
+            newList.add(item.map(mapper));
+        }
+        return newList;
+    }
+
+    public Completable insertNewItem(UsersDao usersDao) {
+        return usersDao.insertUserDb(user)
+                .andThen(usersDao.insertAddressDb(address))
+                .andThen(usersDao.insertEmploymentDb(employment))
+                .andThen(usersDao.insertSubscriptionDb(subscription));
+    }
+
+    <T> T map(Mapper<T> mapper) {
+        return mapper.map(user, address, employment, subscription);
+    }
+
+    public interface Mapper<T> {
+        T map(UserDb user, AddressDb address, EmploymentDb employment, SubscriptionDb subscription);
+    }
 }

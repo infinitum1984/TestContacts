@@ -5,10 +5,12 @@ import androidx.annotation.NonNull;
 import com.privat.contacts.domain.model.EmploymentDomain;
 
 public class BaseEmploymentDomain implements EmploymentDomain {
+    private final int userId;
     private final String title;
     private final String keySkill;
 
-    public BaseEmploymentDomain(String title, String keySkill) {
+    public BaseEmploymentDomain(int userId, String title, String keySkill) {
+        this.userId = userId;
         this.title = title;
         this.keySkill = keySkill;
     }
@@ -16,6 +18,6 @@ public class BaseEmploymentDomain implements EmploymentDomain {
     @NonNull
     @Override
     public <T> T map(Mapper<T> mapper) {
-        return mapper.map(title, keySkill);
+        return mapper.map(userId, title, keySkill);
     }
 }

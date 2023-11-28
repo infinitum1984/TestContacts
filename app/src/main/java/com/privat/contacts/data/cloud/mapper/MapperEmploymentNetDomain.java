@@ -13,7 +13,7 @@ public class MapperEmploymentNetDomain implements EmploymentNet.Mapper<Employmen
     }
 
     @Override
-    public EmploymentDomain map(String title, String keySkill) {
-        return new BaseEmploymentDomain(title, keySkill);
+    public EmploymentDomain map(int userId, String title, String keySkill) {
+        return new BaseEmploymentDomain(userId, title, keySkill);
     }
 }

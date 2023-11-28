@@ -8,6 +8,6 @@ public interface EmploymentDomain {
 
     interface Mapper<T> {
         @NotNull
-        <T> T map(String title, String keySkill);
+        T map(int userId, String title, String keySkill);
     }
 }

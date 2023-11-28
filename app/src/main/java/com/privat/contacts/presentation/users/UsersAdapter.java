@@ -11,9 +11,15 @@ import com.privat.contacts.presentation.users.model.UserItemUi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
     private final ArrayList<UserItemUi> userItems = new ArrayList();
+    private final Consumer<Integer> favoriteClick;
+
+    public UsersAdapter(Consumer<Integer> favoriteClick) {
+        this.favoriteClick = favoriteClick;
+    }
 
     public void updateData(List<UserItemUi> newItems) {
         userItems.clear();
@@ -48,6 +54,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         void bind(UserItemUi userItemUi) {
             userItemUi.showTitle(userItemBinding.tvName);
             userItemUi.showText(userItemBinding.tvPhone);
+            userItemUi.showFavorite(userItemBinding.ibFavorite, favoriteClick);
         }
     }
 }

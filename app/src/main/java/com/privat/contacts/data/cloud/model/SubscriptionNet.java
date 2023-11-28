@@ -19,15 +19,16 @@ public class SubscriptionNet {
         this.term = term;
     }
 
-    public <T> T map(Mapper<T> mapper) {
-        return mapper.map(plan,
+    public <T> T map(int userId, Mapper<T> mapper) {
+        return mapper.map(userId, plan,
                 status,
                 paymentMethod,
                 term);
     }
 
     public interface Mapper<T> {
-        T map(String plan,
+        T map(int userId,
+              String plan,
               String status,
               String paymentMethod,
               String term);

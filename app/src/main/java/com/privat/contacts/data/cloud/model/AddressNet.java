@@ -31,8 +31,10 @@ public class AddressNet {
         this.coordinates = coordinates;
     }
 
-    public <T> T map(Mapper<T> mapper) {
-        return mapper.map(city,
+    public <T> T map(int userId, Mapper<T> mapper) {
+        return mapper.map(
+                userId,
+                city,
                 streetName,
                 streetAddress,
                 zipCode,
@@ -42,7 +44,8 @@ public class AddressNet {
     }
 
     public interface Mapper<T> {
-        T map(String city,
+        T map(int userId,
+              String city,
               String streetName,
               String streetAddress,
               String zipCode,

@@ -83,4 +83,9 @@ public class BaseUserDomain implements UserDomain {
                 employment,
                 subscription);
     }
+
+    @Override
+    public boolean sameId(int userId) {
+        return id == userId;
+    }
 }

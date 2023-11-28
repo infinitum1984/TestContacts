@@ -6,7 +6,25 @@ import androidx.room.PrimaryKey;
 @Entity
 public class EmploymentDb {
     @PrimaryKey
-    public int userId;
-    public String title;
-    public String keySkill;
+    private final int userId;
+    private final String title;
+    private final String keySkill;
+
+    public EmploymentDb(int userId, String title, String keySkill) {
+        this.userId = userId;
+        this.title = title;
+        this.keySkill = keySkill;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getKeySkill() {
+        return keySkill;
+    }
 }
