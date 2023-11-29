@@ -7,8 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.privat.contacts.R;
 import com.privat.contacts.databinding.FragmentFavoriteBinding;
 import com.privat.contacts.presentation.users.UsersAdapter;
 import com.privat.contacts.presentation.users.model.UserItemUi;
@@ -23,7 +28,10 @@ public class FavoriteFragment extends DaggerFragment implements FavoriteView {
 
     @Inject
     FavoritePresenter favoritePresenter;
-    private final UsersAdapter usersAdapter = new UsersAdapter(favoriteClickId -> {
+    private final UsersAdapter usersAdapter = new UsersAdapter(onClickId -> {
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main)
+                .navigate(R.id.action_bottomNavigationHostFragment_to_detailsFragment);
+    }, favoriteClickId -> {
         favoritePresenter.changeFavorite(favoriteClickId);
     });
     private FragmentFavoriteBinding binding;
@@ -33,6 +41,10 @@ public class FavoriteFragment extends DaggerFragment implements FavoriteView {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false);
         binding.rvUsers.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvUsers.setAdapter(usersAdapter);
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(R.string.favorite);
+        DividerItemDecoration itemDecorator = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
+        itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.divider));
+        binding.rvUsers.addItemDecoration(itemDecorator);
         return binding.getRoot();
     }
 

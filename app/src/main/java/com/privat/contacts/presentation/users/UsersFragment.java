@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.privat.contacts.R;
@@ -28,9 +31,9 @@ public class UsersFragment extends DaggerFragment implements UsersView {
     @Inject
     public UsersPresenter usersPresenter;
     private FragmentUsersBinding binding;
-    private final UsersAdapter usersAdapter = new UsersAdapter(favoriteClickId -> {
-        usersPresenter.changeFavorite(favoriteClickId);
-        Navigation.findNavController(requireActivity(),R.id.nav_host_fragment_activity_main).navigate(R.id.action_bottomNavigationHostFragment_to_detailsFragment);
+    private final UsersAdapter usersAdapter = new UsersAdapter(onClick -> {
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main)
+                .navigate(R.id.action_bottomNavigationHostFragment_to_detailsFragment);
     });
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -39,6 +42,10 @@ public class UsersFragment extends DaggerFragment implements UsersView {
         View root = binding.getRoot();
         binding.rvUsers.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvUsers.setAdapter(usersAdapter);
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(R.string.all_users);
+        DividerItemDecoration itemDecorator = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
+        itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.divider));
+        binding.rvUsers.addItemDecoration(itemDecorator);
         return root;
     }
 
@@ -48,6 +55,11 @@ public class UsersFragment extends DaggerFragment implements UsersView {
         binding.fabFetchNewUser.setOnClickListener(listener -> {
             usersPresenter.fetchNewUser();
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override

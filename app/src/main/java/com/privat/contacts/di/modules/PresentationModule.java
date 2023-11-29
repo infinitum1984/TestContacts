@@ -1,6 +1,6 @@
 package com.privat.contacts.di.modules;
 
-import com.privat.contacts.MainActivity;
+import com.privat.contacts.presentation.MainActivity;
 import com.privat.contacts.presentation.details.DetailsFragment;
 import com.privat.contacts.presentation.favorite.BaseFavoritePresenter;
 import com.privat.contacts.presentation.favorite.FavoriteFragment;

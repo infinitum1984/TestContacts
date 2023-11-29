@@ -1,12 +1,16 @@
 package com.privat.contacts.presentation.details;
 
+import static androidx.navigation.fragment.FragmentKt.findNavController;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.privat.contacts.databinding.FragmentDetailsBinding;
 import com.privat.contacts.databinding.FragmentFavoriteBinding;
