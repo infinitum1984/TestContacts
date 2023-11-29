@@ -4,15 +4,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.privat.contacts.R;
+import com.privat.contacts.presentation.images.ImageLoader;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
 public class BaseUserItemUi implements UserItemUi {
-
     private final int id;
     @NotNull
     private final String name;
@@ -20,12 +19,18 @@ public class BaseUserItemUi implements UserItemUi {
     private final String phone;
     @NotNull
     private final String imgUrl;
+    @NotNull
+    private final ImageLoader imageLoader;
+    @NotNull
+    private final boolean favorite;
 
-    public BaseUserItemUi(int id, @NotNull String name, @NotNull String phone, @NotNull String imgUrl) {
+    public BaseUserItemUi(int id, @NotNull String name, @NotNull String phone, @NotNull String imgUrl, @NotNull ImageLoader imageLoader, boolean favorite) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.imgUrl = imgUrl;
+        this.imageLoader = imageLoader;
+        this.favorite = favorite;
     }
 
     @Override
@@ -35,8 +40,10 @@ public class BaseUserItemUi implements UserItemUi {
 
     @Override
     public void loadAvatar(@NotNull ImageView imageView) {
-        Glide.with(imageView.getContext()).load(imgUrl).placeholder(R.drawable.ic_person)
-                .into(imageView);
+        if (favorite)
+            imageLoader.loadFromCache(id, imageView);
+        else
+            imageLoader.loadFromUrl(imgUrl, imageView);
     }
 
     @Override
@@ -50,7 +57,7 @@ public class BaseUserItemUi implements UserItemUi {
     }
 
     @Override
-    public void showFavorite(@NotNull ImageButton imageButton, @NotNull Consumer<Integer> clickAction) {
+    public void showRemove(@NotNull ImageButton imageButton, @NotNull Consumer<Integer> clickAction) {
         imageButton.setImageResource(R.drawable.ic_delete);
         imageButton.setOnClickListener(listener -> {
             clickAction.accept(id);

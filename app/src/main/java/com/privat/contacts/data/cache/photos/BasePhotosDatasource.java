@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
@@ -34,14 +33,13 @@ public class BasePhotosDatasource implements PhotosDatasource {
             Glide.with(context)
                     .asBitmap()
                     .load(photoUrl)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(new CustomTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
                         @Override
                         public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition transition) {
                             try {
                                 FileOutputStream fos = new FileOutputStream(createImageFile(userId));
                                 BufferedOutputStream bos = new BufferedOutputStream(fos);
-                                resource.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                                resource.compress(Bitmap.CompressFormat.PNG, 100, bos);
                                 bos.close();
                             } catch (IOException e) {
                                 subscriber.onError(e);

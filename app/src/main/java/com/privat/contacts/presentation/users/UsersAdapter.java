@@ -68,7 +68,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
             userItemUi.showText(userItemBinding.tvPhone);
             userItemUi.loadAvatar(userItemBinding.ivAvatar);
             if (showingFavorite)
-                userItemUi.showFavorite(userItemBinding.ibFavorite, deleteClick);
+                userItemUi.showRemove(userItemBinding.ibFavorite, deleteClick);
             else
                 userItemBinding.ibFavorite.setVisibility(View.GONE);
             userItemBinding.getRoot().setOnClickListener((listener)->{

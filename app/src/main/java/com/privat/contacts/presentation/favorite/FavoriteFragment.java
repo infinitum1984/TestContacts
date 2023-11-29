@@ -57,21 +57,13 @@ public class FavoriteFragment extends BaseMvpView<FavoritePresenter> implements 
         super.onDestroyView();
         binding = null;
     }
-
     @Override
     protected FavoritePresenter presenter() {
         return favoritePresenter;
     }
-
     @Override
     public void showFavoriteList(List<UserItemUi> userItemUis) {
         usersAdapter.updateData(userItemUis);
         usersAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-
-        super.onSaveInstanceState(outState);
     }
 }

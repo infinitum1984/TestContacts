@@ -17,5 +17,5 @@ public interface UserItemUi {
 
     void showText(@NotNull TextView textView);
 
-    void showFavorite(@NotNull ImageButton imageButton, @NotNull Consumer<Integer> clickAction);
+    void showRemove(@NotNull ImageButton imageButton, @NotNull Consumer<Integer> clickAction);
 }

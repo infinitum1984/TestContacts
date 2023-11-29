@@ -8,6 +8,8 @@ import com.privat.contacts.presentation.favorite.BaseFavoritePresenter;
 import com.privat.contacts.presentation.favorite.FavoriteFragment;
 import com.privat.contacts.presentation.favorite.FavoritePresenter;
 import com.privat.contacts.presentation.host.BottomNavigationHostFragment;
+import com.privat.contacts.presentation.images.BaseImageLoader;
+import com.privat.contacts.presentation.images.ImageLoader;
 import com.privat.contacts.presentation.users.BaseUsersPresenter;
 import com.privat.contacts.presentation.users.UsersFragment;
 import com.privat.contacts.presentation.users.UsersPresenter;
@@ -20,18 +22,28 @@ import dagger.android.ContributesAndroidInjector;
 public interface PresentationModule {
     @Binds
     UsersPresenter bindUsersPresenter(BaseUsersPresenter usersPresenter);
+
     @Binds
     FavoritePresenter bindFavoritePresenter(BaseFavoritePresenter usersPresenter);
+
     @Binds
     DetailsPresenter bindDetailsPresenter(BaseDetailsPresenter detailsPresenter);
+
+    @Binds
+    ImageLoader bindImageLoader(BaseImageLoader imageLoader);
+
     @ContributesAndroidInjector
     MainActivity mainActivity();
+
     @ContributesAndroidInjector
     UsersFragment usersFragment();
+
     @ContributesAndroidInjector
     FavoriteFragment favoriteFragment();
+
     @ContributesAndroidInjector
     BottomNavigationHostFragment hostFragment();
+
     @ContributesAndroidInjector
     DetailsFragment detailsFragment();
 }

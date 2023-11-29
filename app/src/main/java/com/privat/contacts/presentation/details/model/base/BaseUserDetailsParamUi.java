@@ -1,17 +1,14 @@
 package com.privat.contacts.presentation.details.model.base;
 
-import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.privat.contacts.R;
 import com.privat.contacts.presentation.details.model.UserDetailsUi;
+import com.privat.contacts.presentation.images.ImageLoader;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
 
 public class BaseUserDetailsParamUi implements UserDetailsUi {
     private final int userId;
@@ -21,12 +18,15 @@ public class BaseUserDetailsParamUi implements UserDetailsUi {
     private final String phone;
     @NotNull
     private final boolean favorite;
+    @NotNull
+    private final ImageLoader imageLoader;
 
-    public BaseUserDetailsParamUi(int userId, @NotNull String name, @NotNull String phone, boolean favorite) {
+    public BaseUserDetailsParamUi(int userId, @NotNull String name, @NotNull String phone, boolean favorite, @NotNull ImageLoader imageLoader) {
         this.userId = userId;
         this.name = name;
         this.phone = phone;
         this.favorite = favorite;
+        this.imageLoader = imageLoader;
     }
 
     @Override
@@ -41,9 +41,7 @@ public class BaseUserDetailsParamUi implements UserDetailsUi {
 
     @Override
     public void loadAvatar(ImageView imageView) {
-        File storageDir = new File(imageView.getContext().getExternalCacheDir(), "images");
-        File imgFile = new File(storageDir, userId + ".png");
-        Glide.with(imageView.getContext()).load(Uri.fromFile(imgFile)).placeholder(R.drawable.ic_person).into(imageView);
+        imageLoader.loadFromCache(userId, imageView);
     }
 
     @Override

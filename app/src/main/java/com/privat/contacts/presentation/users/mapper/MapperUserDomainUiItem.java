@@ -6,15 +6,19 @@ import com.privat.contacts.domain.model.AddressDomain;
 import com.privat.contacts.domain.model.EmploymentDomain;
 import com.privat.contacts.domain.model.SubscriptionDomain;
 import com.privat.contacts.domain.model.UserDomain;
+import com.privat.contacts.presentation.images.ImageLoader;
 import com.privat.contacts.presentation.users.model.BaseUserItemUi;
 import com.privat.contacts.presentation.users.model.UserItemUi;
 
 import javax.inject.Inject;
 
 public class MapperUserDomainUiItem implements UserDomain.Mapper<UserItemUi> {
-    @Inject
-    MapperUserDomainUiItem() {
+    private final ImageLoader imageLoader;
 
+    @Inject
+    MapperUserDomainUiItem(ImageLoader imageLoader) {
+
+        this.imageLoader = imageLoader;
     }
 
     @NonNull
@@ -37,7 +41,7 @@ public class MapperUserDomainUiItem implements UserDomain.Mapper<UserItemUi> {
                           EmploymentDomain employment,
                           SubscriptionDomain subscription) {
         return new BaseUserItemUi(
-                id, firstName + " " + lastName, phoneNumber, avatar
-        );
+                id, firstName + " " + lastName, phoneNumber, avatar,
+                imageLoader, favorite);
     }
 }

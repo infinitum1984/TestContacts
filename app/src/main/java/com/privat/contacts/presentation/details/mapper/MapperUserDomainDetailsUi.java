@@ -9,6 +9,7 @@ import com.privat.contacts.domain.model.UserDomain;
 import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
 import com.privat.contacts.presentation.details.model.UserDetailsUi;
 import com.privat.contacts.presentation.details.model.base.BaseUserDetailsParamUi;
+import com.privat.contacts.presentation.images.ImageLoader;
 
 import java.util.List;
 
@@ -16,10 +17,14 @@ import javax.inject.Inject;
 
 public class MapperUserDomainDetailsUi implements UserDomain.Mapper<UserDetailsUi> {
     private final UserDomain.Mapper<List<UserDetailsParamUi>> userParamsMapper;
+    private final ImageLoader imageLoader;
+
     @Inject
-    MapperUserDomainDetailsUi(UserDomain.Mapper<List<UserDetailsParamUi>> userParamsMapper){
+    MapperUserDomainDetailsUi(UserDomain.Mapper<List<UserDetailsParamUi>> userParamsMapper, ImageLoader imageLoader) {
         this.userParamsMapper = userParamsMapper;
+        this.imageLoader = imageLoader;
     }
+
     @NonNull
     @Override
     public UserDetailsUi map(int id,
@@ -42,6 +47,6 @@ public class MapperUserDomainDetailsUi implements UserDomain.Mapper<UserDetailsU
         return new BaseUserDetailsParamUi(
                 id, firstName + " " + lastName,
                 phoneNumber,
-                favorite);
+                favorite, imageLoader);
     }
 }
