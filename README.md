@@ -21,7 +21,7 @@
   <img src="description/demo.gif" width="250" title="Демо">
 </p>
 
-## Загрузить
+## Завантажити
 
 [дебаг_apk](description/contacts-debug.apk)
 <br/>
