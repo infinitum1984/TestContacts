@@ -4,11 +4,15 @@ import android.widget.TextView;
 
 import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
 
+import org.jetbrains.annotations.NotNull;
+
 public class BaseUserParamUi implements UserDetailsParamUi {
+    @NotNull
     private final String key;
+    @NotNull
     private final String value;
 
-    public BaseUserParamUi(String key, String value) {
+    public BaseUserParamUi(@NotNull String key, @NotNull String value) {
         this.key = key;
         this.value = value;
     }

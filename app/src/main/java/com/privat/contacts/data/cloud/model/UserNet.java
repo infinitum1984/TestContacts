@@ -2,28 +2,46 @@ package com.privat.contacts.data.cloud.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.NotNull;
+
 public class UserNet {
+    @NotNull
     private final int id;
+    @NotNull
     private final String uid;
+    @NotNull
     private final String password;
+    @NotNull
     @SerializedName("first_name")
     private final String firstName;
+    @NotNull
     @SerializedName("last_name")
     private final String lastName;
+    @NotNull
     private final String username;
+    @NotNull
     private final String email;
+    @NotNull
     private final String avatar;
+    @NotNull
     private final String gender;
+    @NotNull
     @SerializedName("phone_number")
     private final String phoneNumber;
+    @NotNull
     @SerializedName("social_insurance_number")
     private final String socialInsuranceNumber;
+    @NotNull
     @SerializedName("date_of_birth")
     private final String dateOfBirth;
+    @NotNull
     private final EmploymentNet employment;
+    @NotNull
     private final AddressNet address;
+    @NotNull
     @SerializedName("credit_card")
     private final CreditCardNet creditCard;
+    @NotNull
     private final SubscriptionNet subscription;
 
 

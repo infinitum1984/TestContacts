@@ -2,12 +2,16 @@ package com.privat.contacts.data.cloud.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.NotNull;
+
 public class EmploymentNet {
+    @NotNull
     private final String title;
     @SerializedName("key_skill")
+    @NotNull
     private final String keySkill;
 
-    public EmploymentNet(String title, String keySkill) {
+    public EmploymentNet(@NotNull String title, @NotNull String keySkill) {
         this.title = title;
         this.keySkill = keySkill;
     }
@@ -17,6 +21,6 @@ public class EmploymentNet {
     }
 
     public interface Mapper<T> {
-        T map(int userId, String title, String keySkill);
+        T map(int userId, @NotNull String title, @NotNull String keySkill);
     }
 }

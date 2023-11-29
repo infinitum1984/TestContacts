@@ -7,43 +7,61 @@ import com.privat.contacts.domain.model.EmploymentDomain;
 import com.privat.contacts.domain.model.SubscriptionDomain;
 import com.privat.contacts.domain.model.UserDomain;
 
+import org.jetbrains.annotations.NotNull;
+
 public class BaseUserDomain implements UserDomain {
     @PrimaryKey
     private final int id;
+    @NotNull
     private final String uid;
+    @NotNull
     private final String password;
+    @NotNull
     private final String firstName;
+    @NotNull
     private final String lastName;
+    @NotNull
     private final String username;
+    @NotNull
     private final String email;
+    @NotNull
     private final String avatar;
+    @NotNull
     private final String gender;
+    @NotNull
     private final String phoneNumber;
+    @NotNull
     private final String socialInsuranceNumber;
+    @NotNull
     private final String dateOfBirth;
+    @NotNull
     private final String cardNumber;
+    @NotNull
     private final boolean favorite;
+    @NotNull
     private final AddressDomain address;
+    @NotNull
     private final EmploymentDomain employment;
+    @NotNull
     private final SubscriptionDomain subscription;
 
     public BaseUserDomain(int id,
-                          String uid,
-                          String password,
-                          String firstName,
-                          String lastName,
-                          String username,
-                          String email,
-                          String avatar,
-                          String gender,
-                          String phoneNumber,
-                          String socialInsuranceNumber,
-                          String dateOfBirth,
-                          String cardNumber,
+                          @NotNull String uid,
+                          @NotNull String password,
+                          @NotNull String firstName,
+                          @NotNull String lastName,
+                          @NotNull String username,
+                          @NotNull String email,
+                          @NotNull String avatar,
+                          @NotNull String gender,
+                          @NotNull String phoneNumber,
+                          @NotNull String socialInsuranceNumber,
+                          @NotNull String dateOfBirth,
+                          @NotNull String cardNumber,
                           boolean favorite,
-                          AddressDomain address,
-                          EmploymentDomain employment,
-                          SubscriptionDomain subscription) {
+                          @NotNull AddressDomain address,
+                          @NotNull EmploymentDomain employment,
+                          @NotNull SubscriptionDomain subscription) {
         this.id = id;
         this.uid = uid;
         this.password = password;

@@ -1,10 +1,9 @@
 package com.privat.contacts.presentation.details.model;
 
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public interface UserDetailsParamUi {
-    void showParam(TextView textView);
+    void showParam(@NotNull TextView textView);
 }

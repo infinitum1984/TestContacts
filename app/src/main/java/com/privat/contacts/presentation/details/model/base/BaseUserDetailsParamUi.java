@@ -6,21 +6,26 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.privat.contacts.R;
-import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
 import com.privat.contacts.presentation.details.model.UserDetailsUi;
 
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class BaseUserDetailsParamUi implements UserDetailsUi {
+    @NotNull
     private final String avatarUrl;
+    @NotNull
     private final String name;
+    @NotNull
     private final String phone;
+    @NotNull
     private final boolean favorite;
-    public BaseUserDetailsParamUi(String name, String phone, boolean favorite, String avatarUrl) {
+
+    public BaseUserDetailsParamUi(@NotNull String name, @NotNull String phone, boolean favorite, @NotNull String avatarUrl) {
         this.avatarUrl = avatarUrl;
         this.name = name;
         this.phone = phone;
-        this.favorite = favorite;}
+        this.favorite = favorite;
+    }
 
     @Override
     public void showName(TextView textView) {

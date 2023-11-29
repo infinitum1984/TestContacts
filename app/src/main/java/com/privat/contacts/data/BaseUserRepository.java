@@ -1,5 +1,7 @@
 package com.privat.contacts.data;
 
+import androidx.annotation.Nullable;
+
 import com.privat.contacts.data.cache.UsersDao;
 import com.privat.contacts.data.cache.model.UserFullDb;
 import com.privat.contacts.data.cloud.NetworkApiService;
@@ -57,6 +59,7 @@ public class BaseUserRepository implements UsersRepository {
         });
     }
 
+    @Nullable
     private UserDomain getItemByIdFromNetworkList(int userId) {
         for (UserDomain user :
                 networkUsersList) {
@@ -73,7 +76,11 @@ public class BaseUserRepository implements UsersRepository {
 
     @Override
     public Completable saveUser(int userId) {
-        return getItemByIdFromNetworkList(userId).map(userFullDomainDbMapper).insertNewItem(contactsDao);
+        UserDomain user = getItemByIdFromNetworkList(userId);
+        if (user == null)
+            return Completable.error(new Exception("User not found"));
+        else
+            return user.map(userFullDomainDbMapper).insertNewItem(contactsDao);
     }
 
     @Override

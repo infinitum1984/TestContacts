@@ -1,27 +1,38 @@
 package com.privat.contacts.data.cloud.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.NotNull;
+
 public class AddressNet {
+    @NotNull
     private final String city;
+    @NotNull
     @SerializedName("street_name")
     private final String streetName;
+    @NotNull
     @SerializedName("street_address")
     private final String streetAddress;
+    @NotNull
     @SerializedName("zip_code")
     private final String zipCode;
+    @NotNull
     @SerializedName("state")
     private final String state;
+    @NotNull
     private final String country;
+    @NotNull
     private final CoordinatesNet coordinates;
 
-    public AddressNet(String city,
-                      String streetName,
-                      String streetAddress,
-                      String zipCode,
-                      String state,
-                      String country,
-                      CoordinatesNet coordinates) {
+    public AddressNet(@NonNull String city,
+                      @NonNull String streetName,
+                      @NonNull String streetAddress,
+                      @NonNull String zipCode,
+                      @NonNull String state,
+                      @NonNull String country,
+                      @NonNull CoordinatesNet coordinates) {
         this.city = city;
         this.streetName = streetName;
         this.streetAddress = streetAddress;
@@ -45,12 +56,12 @@ public class AddressNet {
 
     public interface Mapper<T> {
         T map(int userId,
-              String city,
-              String streetName,
-              String streetAddress,
-              String zipCode,
-              String state,
-              String country,
-              CoordinatesNet coordinates);
+              @NonNull String city,
+              @NonNull String streetName,
+              @NonNull String streetAddress,
+              @NonNull String zipCode,
+              @NonNull String state,
+              @NonNull String country,
+              @NonNull CoordinatesNet coordinates);
     }
 }

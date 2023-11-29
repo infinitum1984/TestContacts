@@ -5,11 +5,14 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public interface UserDetailsUi {
-    void showName(TextView textView);
-    void showPhone(TextView textView);
-    void loadAvatar(ImageView imageView);
-    void showFavorite(FloatingActionButton floatingActionButton);
+    void showName(@NotNull TextView textView);
+
+    void showPhone(@NotNull TextView textView);
+
+    void loadAvatar(@NotNull ImageView imageView);
+
+    void showFavorite(@NotNull FloatingActionButton floatingActionButton);
 }
