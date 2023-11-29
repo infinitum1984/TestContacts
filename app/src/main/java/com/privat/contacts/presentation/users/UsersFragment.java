@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.privat.contacts.R;
 import com.privat.contacts.databinding.FragmentUsersBinding;
+import com.privat.contacts.presentation.host.BottomNavigationHostFragmentDirections;
 import com.privat.contacts.presentation.users.model.UserItemUi;
 
 import java.util.List;
@@ -31,9 +32,8 @@ public class UsersFragment extends DaggerFragment implements UsersView {
     @Inject
     public UsersPresenter usersPresenter;
     private FragmentUsersBinding binding;
-    private final UsersAdapter usersAdapter = new UsersAdapter(onClick -> {
-        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main)
-                .navigate(R.id.action_bottomNavigationHostFragment_to_detailsFragment);
+    private final UsersAdapter usersAdapter = new UsersAdapter(onClickId -> {
+        usersPresenter.openUser(onClickId);
     });
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -55,6 +55,7 @@ public class UsersFragment extends DaggerFragment implements UsersView {
         binding.fabFetchNewUser.setOnClickListener(listener -> {
             usersPresenter.fetchNewUser();
         });
+        usersPresenter.clearTempData();
     }
 
     @Override
@@ -84,5 +85,13 @@ public class UsersFragment extends DaggerFragment implements UsersView {
     public void showUsers(List<UserItemUi> users) {
         usersAdapter.updateData(users);
         usersAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void navigateToUser(int userId) {
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main)
+                .navigate(
+                        BottomNavigationHostFragmentDirections
+                                .actionBottomNavigationHostFragmentToDetailsFragment(userId));
     }
 }

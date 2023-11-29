@@ -46,15 +46,22 @@ public class MapperUserDbDomain implements UserFullDb.Mapper<UserDomain> {
                         address.getLat(),
                         address.getLng()
                 ),
+//                new BaseAddressDomain(user.getId(), "",
+//                        "", "", "",
+//                        "", "",0.0,0.0),
                 new BaseEmploymentDomain(
                         user.getId(), employment.getTitle(), employment.getKeySkill()
                 ),
+//                new BaseEmploymentDomain(
+//                        user.getId(), "",""
+//                ),
                 new BaseSubscriptionDomain(
                         user.getId(), subscription.getPlan(),
                         subscription.getStatus(),
                         subscription.getPaymentMethod(),
                         subscription.getTerm()
                 )
+                //new BaseSubscriptionDomain(user.getId(), "","","","")
         );
     }
 }

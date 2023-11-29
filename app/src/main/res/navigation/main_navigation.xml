@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.privat.contacts.presentation.details.DetailsFragment"
-        android:label="@string/user_details" />
+        android:label="@string/user_details" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

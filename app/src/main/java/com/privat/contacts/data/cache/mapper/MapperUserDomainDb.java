@@ -63,7 +63,7 @@ public class MapperUserDomainDb implements UserDomain.Mapper<UserFullDb> {
                         socialInsuranceNumber,
                         dateOfBirth,
                         cardNumber,
-                        true
+                        false
                 ),
                 address.map(addressDbMapper),
                 employment.map(employmentDbMapper),

@@ -5,6 +5,8 @@ import androidx.room.Relation;
 
 import com.privat.contacts.data.cache.UsersDao;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import io.reactivex.Completable;
 public class UserFullDb {
     @Embedded
     private final UserDb user;
+    @Nullable
     @Relation(parentColumn = "id", entityColumn = "userId")
     private final AddressDb address;
     @Relation(parentColumn = "id", entityColumn = "userId")
@@ -43,7 +46,7 @@ public class UserFullDb {
                 .andThen(usersDao.insertSubscriptionDb(subscription));
     }
 
-    <T> T map(Mapper<T> mapper) {
+    public <T> T map(Mapper<T> mapper) {
         return mapper.map(user, address, employment, subscription);
     }
 

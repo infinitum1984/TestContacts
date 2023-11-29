@@ -1,7 +1,5 @@
 package com.privat.contacts.data;
 
-import android.util.Log;
-
 import com.privat.contacts.data.cache.UsersDao;
 import com.privat.contacts.data.cache.model.UserFullDb;
 import com.privat.contacts.data.cloud.NetworkApiService;
@@ -9,7 +7,6 @@ import com.privat.contacts.data.cloud.model.UserNet;
 import com.privat.contacts.domain.UsersRepository;
 import com.privat.contacts.domain.model.UserDomain;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -60,7 +57,7 @@ public class BaseUserRepository implements UsersRepository {
         });
     }
 
-    private UserDomain getItemById(int userId) {
+    private UserDomain getItemByIdFromNetworkList(int userId) {
         for (UserDomain user :
                 networkUsersList) {
             if (user.sameId(userId))
@@ -71,11 +68,26 @@ public class BaseUserRepository implements UsersRepository {
 
     @Override
     public Completable changeUserFavorite(int userId) {
-        return contactsDao.userExists(userId).flatMapCompletable(exists -> {
-            if (exists)
-                return contactsDao.changeUserFavorite(userId);
-            else
-                return getItemById(userId).map(userFullDomainDbMapper).insertNewItem(contactsDao);
+        return contactsDao.changeUserFavorite(userId);
+    }
+
+    @Override
+    public Completable saveUser(int userId) {
+        return getItemByIdFromNetworkList(userId).map(userFullDomainDbMapper).insertNewItem(contactsDao);
+    }
+
+    @Override
+    public Completable clearTempData() {
+        return contactsDao.deleteTempAddress()
+                .andThen(contactsDao.deleteTempEmployment())
+                .andThen(contactsDao.deleteTempSubscription())
+                .andThen(contactsDao.deleteTempUsersData());
+    }
+
+    @Override
+    public Observable<UserDomain> getUserById(int userId) {
+        return contactsDao.selectUserById(userId).map(item -> {
+            return item.map(userDbDomainMapper);
         });
     }
 }

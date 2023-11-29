@@ -3,10 +3,13 @@ package com.privat.contacts.data.cache.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.Nullable;
+
 @Entity
 public class AddressDb {
     @PrimaryKey
     private final int userId;
+    @Nullable
     private final String city;
     private final String streetName;
     private final String streetAddress;
@@ -27,39 +30,31 @@ public class AddressDb {
         this.lat = lat;
         this.lng = lng;
     }
-
     public double getLng() {
         return lng;
     }
-
     public double getLat() {
         return lat;
     }
-
     public String getCountry() {
         return country;
     }
-
     public String getState() {
         return state;
     }
-
     public String getZipCode() {
         return zipCode;
     }
-
     public String getStreetAddress() {
         return streetAddress;
     }
-
     public String getStreetName() {
         return streetName;
     }
-
+    @Nullable
     public String getCity() {
         return city;
     }
-
     public int getUserId() {
         return userId;
     }

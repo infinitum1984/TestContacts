@@ -16,19 +16,19 @@ import java.util.function.Consumer;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
     private final ArrayList<UserItemUi> userItems = new ArrayList();
-    private final Consumer<Integer> favoriteClick;
+    private final Consumer<Integer> deleteClick;
     private final Consumer<Integer> onClick;
     private final boolean showingFavorite;
 
     public UsersAdapter(Consumer<Integer> onClick) {
         this.onClick = onClick;
         showingFavorite = false;
-        favoriteClick = (id) -> {
+        deleteClick = (id) -> {
         };
     }
 
     public UsersAdapter(Consumer<Integer> onClick, Consumer<Integer> favoriteClick) {
-        this.favoriteClick = favoriteClick;
+        this.deleteClick = favoriteClick;
         this.showingFavorite = true;
         this.onClick = onClick;
     }
@@ -66,10 +66,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         void bind(UserItemUi userItemUi) {
             userItemUi.showTitle(userItemBinding.tvName);
             userItemUi.showText(userItemBinding.tvPhone);
+            userItemUi.loadAvatar(userItemBinding.ivAvatar);
             if (showingFavorite)
-                userItemUi.showFavorite(userItemBinding.ibFavorite, favoriteClick);
+                userItemUi.showFavorite(userItemBinding.ibFavorite, deleteClick);
             else
                 userItemBinding.ibFavorite.setVisibility(View.GONE);
+            userItemBinding.getRoot().setOnClickListener((listener)->{
+                onClick.accept(userItemUi.id());
+            });
         }
     }
 }

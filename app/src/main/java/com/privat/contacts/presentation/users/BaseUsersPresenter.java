@@ -71,9 +71,25 @@ public class BaseUsersPresenter implements UsersPresenter {
     }
 
     @Override
-    public void changeFavorite(int userId) {
-        compositeDisposable.add(usersRepository.changeUserFavorite(userId)
+    public void openUser(int userId) {
+        compositeDisposable.add(usersRepository.saveUser(userId)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe());
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(()->{
+                    mvpView.navigateToUser(userId);
+                }, error -> {
+                    Log.d("BaseUsersPresenter", ": " + error.getMessage());
+                }));
+    }
+
+    @Override
+    public void clearTempData() {
+        compositeDisposable.add(usersRepository.clearTempData()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(()->{
+                }, error -> {
+                    Log.d("BaseUsersPresenter", ": " + error.getMessage());
+                }));
     }
 }

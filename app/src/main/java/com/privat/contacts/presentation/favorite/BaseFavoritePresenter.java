@@ -41,6 +41,14 @@ public class BaseFavoritePresenter implements FavoritePresenter {
     @Override
     public void changeFavorite(Integer userId) {
         compositeDisposable.add(usersRepository.changeUserFavorite(userId)
+                .andThen(usersRepository.clearTempData())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe());
+    }
+
+    @Override
+    public void clearTempData() {
+        compositeDisposable.add(usersRepository.clearTempData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe());
     }
