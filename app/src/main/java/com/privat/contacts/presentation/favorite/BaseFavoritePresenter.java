@@ -2,7 +2,7 @@ package com.privat.contacts.presentation.favorite;
 
 import android.util.Log;
 
-import com.privat.contacts.base.presentation.BasePresenter;
+import com.privat.contacts.base.presentation.base.BasePresenter;
 import com.privat.contacts.domain.UsersRepository;
 import com.privat.contacts.domain.model.UserDomain;
 import com.privat.contacts.presentation.users.model.UserItemUi;

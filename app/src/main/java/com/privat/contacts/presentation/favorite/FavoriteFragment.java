@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.privat.contacts.R;
-import com.privat.contacts.base.presentation.BaseMvpView;
+import com.privat.contacts.base.presentation.base.BaseMvpView;
 import com.privat.contacts.databinding.FragmentFavoriteBinding;
 import com.privat.contacts.presentation.host.BottomNavigationHostFragmentDirections;
 import com.privat.contacts.presentation.users.UsersAdapter;
@@ -36,7 +36,6 @@ public class FavoriteFragment extends BaseMvpView<FavoritePresenter> implements 
         favoritePresenter.changeFavorite(favoriteClickId);
     });
     private FragmentFavoriteBinding binding;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false);
@@ -48,13 +47,11 @@ public class FavoriteFragment extends BaseMvpView<FavoritePresenter> implements 
         binding.rvUsers.addItemDecoration(itemDecorator);
         return binding.getRoot();
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         favoritePresenter.clearTempData();
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -70,5 +67,11 @@ public class FavoriteFragment extends BaseMvpView<FavoritePresenter> implements 
     public void showFavoriteList(List<UserItemUi> userItemUis) {
         usersAdapter.updateData(userItemUis);
         usersAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+
+        super.onSaveInstanceState(outState);
     }
 }

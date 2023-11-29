@@ -53,6 +53,12 @@ public class BasePhotosDatasource implements PhotosDatasource {
                         @Override
                         public void onLoadCleared(@Nullable Drawable placeholder) {
                         }
+
+                        @Override
+                        public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                            super.onLoadFailed(errorDrawable);
+                            subscriber.onError(new Exception("Error load image"));
+                        }
                     });
         });
     }
@@ -64,7 +70,6 @@ public class BasePhotosDatasource implements PhotosDatasource {
                 storageDir, userId + ".png"
         );
     }
-
     @Override
     public void removePhoto(int userId) throws IOException {
         createImageFile(userId).delete();

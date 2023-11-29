@@ -6,4 +6,5 @@
     <string name="all_users">All users</string>
     <string name="user_details">User details</string>
     <string name="favorite">Favorite</string>
+    <string name="error">Error</string>
 </resources>

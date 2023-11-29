@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.privat.contacts.R;
-import com.privat.contacts.base.presentation.BaseMvpView;
+import com.privat.contacts.base.presentation.base.BaseMvpView;
 import com.privat.contacts.databinding.FragmentUsersBinding;
 import com.privat.contacts.presentation.host.BottomNavigationHostFragmentDirections;
 import com.privat.contacts.presentation.users.model.UserItemUi;
