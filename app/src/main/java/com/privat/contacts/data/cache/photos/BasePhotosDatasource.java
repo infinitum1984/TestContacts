@@ -3,7 +3,6 @@ package com.privat.contacts.data.cache.photos;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,12 +24,10 @@ import io.reactivex.Completable;
 
 public class BasePhotosDatasource implements PhotosDatasource {
     private final Context context;
-
     @Inject
     public BasePhotosDatasource(Context context) {
         this.context = context;
     }
-
     @Override
     public Completable savePhoto(int userId, String photoUrl) {
         return Completable.create(subscriber -> {
@@ -58,19 +55,14 @@ public class BasePhotosDatasource implements PhotosDatasource {
                         }
                     });
         });
-
-
     }
-
     private File createImageFile(int userId) throws IOException {
         File storageDir = new File(context.getExternalCacheDir(), "images");
         if (!storageDir.exists())
             storageDir.mkdirs();
-        File photoFile = new File(
+        return new File(
                 storageDir, userId + ".png"
         );
-        Log.d("D_BasePhotoMaker", "createImageFile: ${photoFile.path}");
-        return photoFile;
     }
 
     @Override

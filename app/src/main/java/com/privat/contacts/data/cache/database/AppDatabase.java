@@ -18,6 +18,5 @@ import com.privat.contacts.data.cache.model.UserDb;
         })
 public abstract class AppDatabase extends RoomDatabase {
     final static int VERSION = 1;
-
     public abstract UsersDao provideUsersDao();
 }

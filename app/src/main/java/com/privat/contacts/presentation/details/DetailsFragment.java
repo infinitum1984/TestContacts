@@ -1,6 +1,5 @@
 package com.privat.contacts.presentation.details;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.privat.contacts.R;
+import com.privat.contacts.base.presentation.BaseMvpView;
 import com.privat.contacts.databinding.FragmentDetailsBinding;
 import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
 import com.privat.contacts.presentation.details.model.UserDetailsUi;
@@ -22,13 +21,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import dagger.android.support.DaggerFragment;
-
-public class DetailsFragment extends DaggerFragment implements DetailsView {
+public class DetailsFragment extends BaseMvpView<DetailsPresenter> implements DetailsView {
     FragmentDetailsBinding binding;
     private final UserParamsAdapter userParamsAdapter = new UserParamsAdapter();
     @Inject
     DetailsPresenter detailsPresenter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -47,15 +45,8 @@ public class DetailsFragment extends DaggerFragment implements DetailsView {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        detailsPresenter.onAttach(this);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        detailsPresenter.onDetach();
+    protected DetailsPresenter presenter() {
+        return detailsPresenter;
     }
 
     @Override
@@ -75,5 +66,10 @@ public class DetailsFragment extends DaggerFragment implements DetailsView {
     @Override
     public int userId() {
         return DetailsFragmentArgs.fromBundle(requireArguments()).getUserId();
+    }
+
+    @Override
+    public void showError(Throwable throwable) {
+
     }
 }

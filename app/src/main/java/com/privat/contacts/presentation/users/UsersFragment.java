@@ -1,8 +1,5 @@
 package com.privat.contacts.presentation.users;
 
-import static androidx.navigation.fragment.FragmentKt.findNavController;
-
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.privat.contacts.R;
+import com.privat.contacts.base.presentation.BaseMvpView;
 import com.privat.contacts.databinding.FragmentUsersBinding;
 import com.privat.contacts.presentation.host.BottomNavigationHostFragmentDirections;
 import com.privat.contacts.presentation.users.model.UserItemUi;
@@ -26,9 +23,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import dagger.android.support.DaggerFragment;
-
-public class UsersFragment extends DaggerFragment implements UsersView {
+public class UsersFragment extends BaseMvpView<UsersPresenter> implements UsersView {
     @Inject
     public UsersPresenter usersPresenter;
     private FragmentUsersBinding binding;
@@ -64,18 +59,6 @@ public class UsersFragment extends DaggerFragment implements UsersView {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        usersPresenter.onAttach(this);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        usersPresenter.onDetach();
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
@@ -93,5 +76,10 @@ public class UsersFragment extends DaggerFragment implements UsersView {
                 .navigate(
                         BottomNavigationHostFragmentDirections
                                 .actionBottomNavigationHostFragmentToDetailsFragment(userId));
+    }
+
+    @Override
+    protected UsersPresenter presenter() {
+        return usersPresenter;
     }
 }

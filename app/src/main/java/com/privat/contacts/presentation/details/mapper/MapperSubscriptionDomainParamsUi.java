@@ -2,7 +2,6 @@ package com.privat.contacts.presentation.details.mapper;
 
 import androidx.annotation.NonNull;
 
-import com.privat.contacts.domain.model.EmploymentDomain;
 import com.privat.contacts.domain.model.SubscriptionDomain;
 import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
 import com.privat.contacts.presentation.details.model.base.BaseUserParamUi;

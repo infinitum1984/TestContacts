@@ -1,6 +1,5 @@
 package com.privat.contacts.presentation.favorite;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.privat.contacts.R;
+import com.privat.contacts.base.presentation.BaseMvpView;
 import com.privat.contacts.databinding.FragmentFavoriteBinding;
 import com.privat.contacts.presentation.host.BottomNavigationHostFragmentDirections;
 import com.privat.contacts.presentation.users.UsersAdapter;
@@ -24,10 +24,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import dagger.android.support.DaggerFragment;
-
-public class FavoriteFragment extends DaggerFragment implements FavoriteView {
-
+public class FavoriteFragment extends BaseMvpView<FavoritePresenter> implements FavoriteView {
     @Inject
     FavoritePresenter favoritePresenter;
     private final UsersAdapter usersAdapter = new UsersAdapter(onClickId -> {
@@ -65,15 +62,8 @@ public class FavoriteFragment extends DaggerFragment implements FavoriteView {
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        favoritePresenter.onAttach(this);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        favoritePresenter.onDetach();
+    protected FavoritePresenter presenter() {
+        return favoritePresenter;
     }
 
     @Override

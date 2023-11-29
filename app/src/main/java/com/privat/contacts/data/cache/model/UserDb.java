@@ -38,7 +38,6 @@ public class UserDb {
     @NotNull
     private final boolean favorite;
 
-
     public UserDb(int id,
                   @NonNull String uid,
                   @NonNull String password,
@@ -66,70 +65,56 @@ public class UserDb {
         this.cardNumber = cardNumber;
         this.favorite = favorite;
     }
-
     public int getId() {
         return id;
     }
-
     @NonNull
     public String getAvatar() {
         return avatar;
     }
-
     @NonNull
     public String getDateOfBirth() {
         return dateOfBirth;
     }
-
     @NonNull
     public String getEmail() {
         return email;
     }
-
     @NonNull
     public String getFirstName() {
         return firstName;
     }
-
     @NonNull
     public String getGender() {
         return gender;
     }
-
     @NonNull
     public String getLastName() {
         return lastName;
     }
-
     @NonNull
     public String getPassword() {
         return password;
     }
-
     @NonNull
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
     @NonNull
     public String getSocialInsuranceNumber() {
         return socialInsuranceNumber;
     }
-
     @NonNull
     public String getUid() {
         return uid;
     }
-
     @NonNull
     public String getUsername() {
         return username;
     }
-
     public boolean isFavorite() {
         return favorite;
     }
-
     @NonNull
     public String getCardNumber() {
         return cardNumber;

@@ -1,20 +1,16 @@
 package com.privat.contacts.presentation.details;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.privat.contacts.databinding.UserItemBinding;
 import com.privat.contacts.databinding.UserParamItemBinding;
 import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
-import com.privat.contacts.presentation.users.model.UserItemUi;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class UserParamsAdapter extends RecyclerView.Adapter<UserParamsAdapter.UserViewHolder> {
     private final ArrayList<UserDetailsParamUi> userItems = new ArrayList();

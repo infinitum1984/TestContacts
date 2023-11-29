@@ -20,14 +20,12 @@ public class AddressDb {
     private final String zipCode;
     @NotNull
     private final String state;
-
     @NotNull
     private final String country;
     @NotNull
     private final double lat;
     @NotNull
     private final double lng;
-
     public AddressDb(int userId, @NonNull String city,
                      @NonNull String streetName,
                      @NonNull String streetAddress,
@@ -45,45 +43,36 @@ public class AddressDb {
         this.lat = lat;
         this.lng = lng;
     }
-
     public double getLng() {
         return lng;
     }
-
     public double getLat() {
         return lat;
     }
-
     @NonNull
     public String getCountry() {
         return country;
     }
-
     @NonNull
     public String getState() {
         return state;
     }
-
     @NonNull
     public String getZipCode() {
         return zipCode;
     }
-
     @NonNull
     public String getStreetAddress() {
         return streetAddress;
     }
-
     @NonNull
     public String getStreetName() {
         return streetName;
     }
-
     @NotNull
     public String getCity() {
         return city;
     }
-
     public int getUserId() {
         return userId;
     }

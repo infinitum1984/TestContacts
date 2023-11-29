@@ -2,6 +2,7 @@ package com.privat.contacts.presentation.details;
 
 import android.util.Log;
 
+import com.privat.contacts.base.presentation.BasePresenter;
 import com.privat.contacts.domain.UsersRepository;
 import com.privat.contacts.domain.model.UserDomain;
 import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
@@ -12,16 +13,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class BaseDetailsPresenter implements DetailsPresenter {
+public class BaseDetailsPresenter extends BasePresenter<DetailsView> implements DetailsPresenter {
     private final UsersRepository usersRepository;
     private final UserDomain.Mapper<UserDetailsUi> userDetailsUiMapper;
     private final UserDomain.Mapper<List<UserDetailsParamUi>> userDetailsParamUiMapper;
-
-    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private DetailsView mvpView;
 
     @Inject
     public BaseDetailsPresenter(UsersRepository usersRepository, UserDomain.Mapper<UserDetailsUi> userDetailsUiMapper, UserDomain.Mapper<List<UserDetailsParamUi>> userDetailsParamUiMapper) {
@@ -29,13 +26,11 @@ public class BaseDetailsPresenter implements DetailsPresenter {
         this.userDetailsUiMapper = userDetailsUiMapper;
         this.userDetailsParamUiMapper = userDetailsParamUiMapper;
     }
-
     @Override
     public void onAttach(DetailsView mvpView) {
-        this.mvpView = mvpView;
+        super.onAttach(mvpView);
         startObserve();
     }
-
     private void startObserve() {
         compositeDisposable.add(usersRepository.getUserById(mvpView.userId())
                 .subscribeOn(Schedulers.io())
@@ -43,21 +38,14 @@ public class BaseDetailsPresenter implements DetailsPresenter {
                 .subscribe(user -> {
                     showUserDetails(user.map(userDetailsUiMapper), user.map(userDetailsParamUiMapper));
                 }, error -> {
-                    Log.d("BaseUsersPresenter", "error: " + error.getMessage());
+                    mvpView.showError(error);
+                    Log.d("BaseDetailsPresenter", "error: " + error.getMessage());
                 }));
     }
-
     private void showUserDetails(UserDetailsUi userDetailsUi, List<UserDetailsParamUi> userDetailsParamUiList) {
         mvpView.showUser(userDetailsUi);
         mvpView.showUserParams(userDetailsParamUiList);
     }
-
-    @Override
-    public void onDetach() {
-        compositeDisposable.dispose();
-        this.mvpView = null;
-    }
-
     @Override
     public void changeFavorite() {
         compositeDisposable.add(usersRepository.changeUserFavorite(mvpView.userId())
@@ -65,6 +53,7 @@ public class BaseDetailsPresenter implements DetailsPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {
                 }, error -> {
+                    mvpView.showError(error);
                     Log.d("BaseUsersPresenter", "error: " + error.getMessage());
                 }));
     }

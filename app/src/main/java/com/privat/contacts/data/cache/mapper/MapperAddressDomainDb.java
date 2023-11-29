@@ -10,9 +10,7 @@ import javax.inject.Inject;
 public class MapperAddressDomainDb implements AddressDomain.Mapper<AddressDb> {
     @Inject
     MapperAddressDomainDb() {
-
     }
-
     @NonNull
     @Override
     public AddressDb map(int userId,

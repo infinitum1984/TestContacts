@@ -26,27 +26,22 @@ public class SubscriptionDb {
         this.paymentMethod = paymentMethod;
         this.term = term;
     }
-
     @NonNull
     public String getTerm() {
         return term;
     }
-
     @NonNull
     public String getPaymentMethod() {
         return paymentMethod;
     }
-
     @NonNull
     public String getStatus() {
         return status;
     }
-
     @NonNull
     public String getPlan() {
         return plan;
     }
-
     public int getUserId() {
         return userId;
     }

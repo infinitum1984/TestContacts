@@ -29,7 +29,6 @@ public class BaseUserRepository implements UsersRepository {
     private final UserDomain.Mapper<UserFullDb> userFullDomainDbMapper;
     private final UserFullDb.Mapper<UserDomain> userDbDomainMapper;
     private final PhotosDatasource photosDatasource;
-
     @Inject
     BaseUserRepository(NetworkApiService networkApiService,
                        UsersDao usersDao,

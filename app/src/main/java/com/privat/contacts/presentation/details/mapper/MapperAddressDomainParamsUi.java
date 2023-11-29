@@ -31,7 +31,7 @@ public class MapperAddressDomainParamsUi implements AddressDomain.Mapper<List<Us
         params.add(new BaseUserParamUi("Street address", streetAddress));
         params.add(new BaseUserParamUi("Zip code", zipCode));
         params.add(new BaseUserParamUi("country", country));
-        params.add(new BaseUserParamUi("coordinates", String.valueOf(coordinateLat) + ", " + String.valueOf(coordinateLng)));
+        params.add(new BaseUserParamUi("coordinates", coordinateLat + ", " + coordinateLng));
         return params;
     }
 }

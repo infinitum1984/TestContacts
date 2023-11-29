@@ -10,9 +10,7 @@ import javax.inject.Inject;
 public class MapperSubscriptionDomainDb implements SubscriptionDomain.Mapper<SubscriptionDb> {
     @Inject
     MapperSubscriptionDomainDb() {
-
     }
-
     @NonNull
     @Override
     public SubscriptionDb map(int userId,

@@ -2,6 +2,7 @@ package com.privat.contacts.presentation.users;
 
 import android.util.Log;
 
+import com.privat.contacts.base.presentation.BasePresenter;
 import com.privat.contacts.domain.UsersRepository;
 import com.privat.contacts.domain.model.UserDomain;
 import com.privat.contacts.presentation.users.model.UserItemUi;
@@ -11,16 +12,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 
-public class BaseUsersPresenter implements UsersPresenter {
-
+public class BaseUsersPresenter extends BasePresenter<UsersView> implements UsersPresenter {
     private final UsersRepository usersRepository;
     private final UserDomain.Mapper<UserItemUi> userItemUiMapper;
-    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private UsersView mvpView;
+
     @Inject
     BaseUsersPresenter(UsersRepository usersRepository, UserDomain.Mapper<UserItemUi> userItemUiMapper) {
         this.usersRepository = usersRepository;
@@ -29,10 +26,9 @@ public class BaseUsersPresenter implements UsersPresenter {
 
     @Override
     public void onAttach(UsersView mvpView) {
-        this.mvpView = mvpView;
+        super.onAttach(mvpView);
         startObserve();
     }
-
     private void startObserve() {
         compositeDisposable.add(usersRepository.networkUsers()
                 .subscribeOn(Schedulers.io())
@@ -44,32 +40,20 @@ public class BaseUsersPresenter implements UsersPresenter {
                     Log.d("BaseUsersPresenter", "error: " + error.getMessage());
                 }));
     }
-
     private void showItems(List<UserDomain> items) {
         mvpView.showUsers(UserDomain.mapList(items, userItemUiMapper));
     }
-
-    @Override
-    public void onDetach() {
-        mvpView = null;
-        compositeDisposable.dispose();
-    }
-
     @Override
     public void fetchNewUser() {
         compositeDisposable.add(usersRepository.fetchNewUser()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action() {
-                    @Override
-                    public void run() throws Exception {
-
-                    }
+                .subscribe(() -> {
                 }, error -> {
+                    mvpView.showError(error);
                     Log.d("BaseUsersPresenter", ": " + error.getMessage());
                 }));
     }
-
     @Override
     public void openUser(int userId) {
         compositeDisposable.add(usersRepository.saveUser(userId)
@@ -78,10 +62,10 @@ public class BaseUsersPresenter implements UsersPresenter {
                 .subscribe(()->{
                     mvpView.navigateToUser(userId);
                 }, error -> {
+                    mvpView.showError(error);
                     Log.d("BaseUsersPresenter", ": " + error.getMessage());
                 }));
     }
-
     @Override
     public void clearTempData() {
         compositeDisposable.add(usersRepository.clearTempData()
@@ -89,6 +73,7 @@ public class BaseUsersPresenter implements UsersPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(()->{
                 }, error -> {
+                    mvpView.showError(error);
                     Log.d("BaseUsersPresenter", ": " + error.getMessage());
                 }));
     }

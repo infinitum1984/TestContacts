@@ -17,7 +17,6 @@ public class UserFullDb {
     @NotNull
     @Embedded
     private final UserDb user;
-
     @NotNull
     @Relation(parentColumn = "id", entityColumn = "userId")
     private final AddressDb address;
@@ -27,7 +26,6 @@ public class UserFullDb {
     @NotNull
     @Relation(parentColumn = "id", entityColumn = "userId")
     private final SubscriptionDb subscription;
-
     public UserFullDb(@NonNull UserDb user, @NonNull AddressDb address, @NonNull EmploymentDb employment, @NonNull SubscriptionDb subscription) {
         this.user = user;
         this.address = address;
@@ -44,7 +42,6 @@ public class UserFullDb {
         }
         return newList;
     }
-
     @NotNull
     public Completable insertNewItem(@NotNull UsersDao usersDao) {
         return usersDao.insertUserDb(user)
@@ -52,12 +49,10 @@ public class UserFullDb {
                 .andThen(usersDao.insertEmploymentDb(employment))
                 .andThen(usersDao.insertSubscriptionDb(subscription));
     }
-
     @NotNull
     public <T> T map(@NotNull Mapper<T> mapper) {
         return mapper.map(user, address, employment, subscription);
     }
-
     public interface Mapper<T> {
         @NotNull
         T map(@NotNull UserDb user, @NotNull AddressDb address, @NotNull EmploymentDb employment, @NotNull SubscriptionDb subscription);
