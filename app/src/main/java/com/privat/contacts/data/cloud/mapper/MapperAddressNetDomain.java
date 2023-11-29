@@ -10,9 +10,7 @@ import javax.inject.Inject;
 public class MapperAddressNetDomain implements AddressNet.Mapper<AddressDomain> {
     @Inject
     public MapperAddressNetDomain() {
-
     }
-
     @Override
     public AddressDomain map(int userId, String city, String streetName, String streetAddress, String zipCode, String state, String country, CoordinatesNet coordinates) {
         return new BaseAddressDomain(

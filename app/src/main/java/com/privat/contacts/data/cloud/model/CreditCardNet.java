@@ -10,11 +10,9 @@ public class CreditCardNet {
     @NotNull
     @SerializedName("cc_number")
     private final String ccNumber;
-
     public CreditCardNet(@NonNull String ccNumber) {
         this.ccNumber = ccNumber;
     }
-
     @NotNull
     public String cardNumber() {
         return ccNumber;

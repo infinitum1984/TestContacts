@@ -7,13 +7,10 @@ import java.util.List;
 
 public interface UserDomain {
     int id();
-
     @NotNull
     String photoUrl();
-
     @NotNull
     <T> T map(Mapper<T> mapper);
-
     static <T> List<T> mapList(List<UserDomain> userDomainList, Mapper<T> mapper) {
         LinkedList<T> newList = new LinkedList();
         for (UserDomain item :
@@ -22,7 +19,6 @@ public interface UserDomain {
         }
         return newList;
     }
-
     interface Mapper<T> {
         @NotNull
         T map(int id,

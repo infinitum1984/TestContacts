@@ -9,9 +9,7 @@ import javax.inject.Inject;
 public class MapperSubscriptionNetDomain implements SubscriptionNet.Mapper<SubscriptionDomain> {
     @Inject
     public MapperSubscriptionNetDomain() {
-
     }
-
     @Override
     public SubscriptionDomain map(int userId, String plan, String status, String paymentMethod, String term) {
         return new BaseSubscriptionDomain(userId, plan, status, paymentMethod, term);

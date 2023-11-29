@@ -43,8 +43,6 @@ public class UserNet {
     private final CreditCardNet creditCard;
     @NotNull
     private final SubscriptionNet subscription;
-
-
     public UserNet(int id,
                    String uid,
                    String password,
@@ -78,7 +76,6 @@ public class UserNet {
         this.creditCard = creditCard;
         this.subscription = subscription;
     }
-
     public <T> T map(Mapper<T> mapper) {
         return mapper.map(id,
                 uid,
@@ -97,7 +94,6 @@ public class UserNet {
                 creditCard,
                 subscription);
     }
-
     public interface Mapper<T> {
         T map(
                 int id,

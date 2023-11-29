@@ -17,7 +17,6 @@ public class MapperUserNetDomain implements UserNet.Mapper<UserDomain> {
     private final AddressNet.Mapper<AddressDomain> addressDomainMapper;
     private final EmploymentNet.Mapper<EmploymentDomain> employmentDomainMapper;
     private final SubscriptionNet.Mapper<SubscriptionDomain> subscriptionDomainMapper;
-
     @Inject
     public MapperUserNetDomain(AddressNet.Mapper<AddressDomain> addressDomainMapper,
                                EmploymentNet.Mapper<EmploymentDomain> employmentDomainMapper,
@@ -26,7 +25,6 @@ public class MapperUserNetDomain implements UserNet.Mapper<UserDomain> {
         this.employmentDomainMapper = employmentDomainMapper;
         this.subscriptionDomainMapper = subscriptionDomainMapper;
     }
-
     @Override
     public UserDomain map(int id,
                           String uid,

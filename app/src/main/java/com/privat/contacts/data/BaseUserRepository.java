@@ -56,14 +56,12 @@ public class BaseUserRepository implements UsersRepository {
     public Observable<List<UserDomain>> networkUsers() {
         return networkUsersSubject;
     }
-
     @Override
     public Observable<List<UserDomain>> favoriteUsers() {
         return contactsDao.selectFavoriteUsers().map(items -> {
             return UserFullDb.mapList(items, userDbDomainMapper);
         });
     }
-
     @Nullable
     private UserDomain getItemByIdFromNetworkList(int userId) {
         synchronized (networkUsersList) {
@@ -75,12 +73,10 @@ public class BaseUserRepository implements UsersRepository {
         }
         return null;
     }
-
     @Override
     public Completable changeUserFavorite(int userId) {
         return contactsDao.changeUserFavorite(userId);
     }
-
     @Override
     public Completable saveUser(int userId) {
         UserDomain user = getItemByIdFromNetworkList(userId);
@@ -89,7 +85,6 @@ public class BaseUserRepository implements UsersRepository {
         else
             return user.map(userFullDomainDbMapper).insertNewItem(contactsDao).andThen(photosDatasource.savePhoto(userId, user.photoUrl()));
     }
-
     @Override
     public Completable clearTempData() {
         return contactsDao.selectTempUserIds().flatMapCompletable((ids) -> {
@@ -108,7 +103,6 @@ public class BaseUserRepository implements UsersRepository {
                 .andThen(contactsDao.deleteTempSubscription())
                 .andThen(contactsDao.deleteTempUsersData());
     }
-
     @Override
     public Observable<UserDomain> getUserById(int userId) {
         return contactsDao.selectUserById(userId).map(item -> {
