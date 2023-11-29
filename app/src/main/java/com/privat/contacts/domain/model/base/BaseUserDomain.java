@@ -1,5 +1,6 @@
 package com.privat.contacts.domain.model.base;
 
+import androidx.annotation.NonNull;
 import androidx.room.PrimaryKey;
 
 import com.privat.contacts.domain.model.AddressDomain;
@@ -84,6 +85,12 @@ public class BaseUserDomain implements UserDomain {
     @Override
     public int id() {
         return this.id;
+    }
+
+    @NonNull
+    @Override
+    public String photoUrl() {
+        return avatar;
     }
 
     @Override

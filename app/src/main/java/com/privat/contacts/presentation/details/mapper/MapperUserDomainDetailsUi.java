@@ -10,7 +10,6 @@ import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
 import com.privat.contacts.presentation.details.model.UserDetailsUi;
 import com.privat.contacts.presentation.details.model.base.BaseUserDetailsParamUi;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -41,10 +40,8 @@ public class MapperUserDomainDetailsUi implements UserDomain.Mapper<UserDetailsU
                              EmploymentDomain employment,
                              SubscriptionDomain subscription) {
         return new BaseUserDetailsParamUi(
-                firstName + " " + lastName,
+                id, firstName + " " + lastName,
                 phoneNumber,
-                favorite,
-                avatar
-        );
+                favorite);
     }
 }

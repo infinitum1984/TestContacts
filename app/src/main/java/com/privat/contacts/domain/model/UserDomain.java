@@ -9,6 +9,9 @@ public interface UserDomain {
     int id();
 
     @NotNull
+    String photoUrl();
+
+    @NotNull
     <T> T map(Mapper<T> mapper);
 
     static <T> List<T> mapList(List<UserDomain> userDomainList, Mapper<T> mapper) {

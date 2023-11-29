@@ -1,5 +1,6 @@
 package com.privat.contacts.presentation.details.model.base;
 
+import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,9 +11,10 @@ import com.privat.contacts.presentation.details.model.UserDetailsUi;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+
 public class BaseUserDetailsParamUi implements UserDetailsUi {
-    @NotNull
-    private final String avatarUrl;
+    private final int userId;
     @NotNull
     private final String name;
     @NotNull
@@ -20,8 +22,8 @@ public class BaseUserDetailsParamUi implements UserDetailsUi {
     @NotNull
     private final boolean favorite;
 
-    public BaseUserDetailsParamUi(@NotNull String name, @NotNull String phone, boolean favorite, @NotNull String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public BaseUserDetailsParamUi(int userId, @NotNull String name, @NotNull String phone, boolean favorite) {
+        this.userId = userId;
         this.name = name;
         this.phone = phone;
         this.favorite = favorite;
@@ -39,8 +41,9 @@ public class BaseUserDetailsParamUi implements UserDetailsUi {
 
     @Override
     public void loadAvatar(ImageView imageView) {
-        Glide.with(imageView.getContext()).load(avatarUrl).placeholder(R.drawable.ic_person)
-                .into(imageView);
+        File storageDir = new File(imageView.getContext().getExternalCacheDir(), "images");
+        File imgFile = new File(storageDir, userId + ".png");
+        Glide.with(imageView.getContext()).load(Uri.fromFile(imgFile)).placeholder(R.drawable.ic_person).into(imageView);
     }
 
     @Override
