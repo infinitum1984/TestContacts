@@ -41,7 +41,6 @@ public class UsersFragment extends BaseMvpView<UsersPresenter> implements UsersV
         binding.rvUsers.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvUsers.setAdapter(usersAdapter);
         binding.rvUsers.addItemDecoration(itemDecorator);
-
         return root;
     }
     @Override
