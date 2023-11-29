@@ -63,4 +63,9 @@ public class BaseUserItemUi implements UserItemUi {
             clickAction.accept(id);
         });
     }
+
+    @Override
+    public boolean favorite() {
+        return favorite;
+    }
 }

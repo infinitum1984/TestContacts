@@ -17,7 +17,7 @@ import com.privat.contacts.R;
 import com.privat.contacts.base.presentation.base.BaseMvpView;
 import com.privat.contacts.databinding.FragmentFavoriteBinding;
 import com.privat.contacts.presentation.host.BottomNavigationHostFragmentDirections;
-import com.privat.contacts.presentation.users.UsersAdapter;
+import com.privat.contacts.presentation.users.adapter.UsersAdapter;
 import com.privat.contacts.presentation.users.model.UserItemUi;
 
 import java.util.List;
@@ -64,6 +64,5 @@ public class FavoriteFragment extends BaseMvpView<FavoritePresenter> implements 
     @Override
     public void showFavoriteList(List<UserItemUi> userItemUis) {
         usersAdapter.updateData(userItemUis);
-        usersAdapter.notifyDataSetChanged();
     }
 }

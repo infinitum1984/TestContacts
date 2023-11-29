@@ -17,6 +17,7 @@ import com.privat.contacts.R;
 import com.privat.contacts.base.presentation.base.BaseMvpView;
 import com.privat.contacts.databinding.FragmentUsersBinding;
 import com.privat.contacts.presentation.host.BottomNavigationHostFragmentDirections;
+import com.privat.contacts.presentation.users.adapter.UsersAdapter;
 import com.privat.contacts.presentation.users.model.UserItemUi;
 
 import java.util.List;
@@ -30,20 +31,19 @@ public class UsersFragment extends BaseMvpView<UsersPresenter> implements UsersV
     private final UsersAdapter usersAdapter = new UsersAdapter(onClickId -> {
         usersPresenter.openUser(onClickId);
     });
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentUsersBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        binding.rvUsers.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.rvUsers.setAdapter(usersAdapter);
         ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(R.string.all_users);
         DividerItemDecoration itemDecorator = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
         itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.divider));
+        binding.rvUsers.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.rvUsers.setAdapter(usersAdapter);
         binding.rvUsers.addItemDecoration(itemDecorator);
+
         return root;
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -63,13 +63,11 @@ public class UsersFragment extends BaseMvpView<UsersPresenter> implements UsersV
         super.onDestroyView();
         binding = null;
     }
-
     @Override
     public void showUsers(List<UserItemUi> users) {
         usersAdapter.updateData(users);
-        usersAdapter.notifyDataSetChanged();
+        binding.rvUsers.smoothScrollToPosition(users.size() - 1);
     }
-
     @Override
     public void navigateToUser(int userId) {
         Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main)
@@ -77,7 +75,6 @@ public class UsersFragment extends BaseMvpView<UsersPresenter> implements UsersV
                         BottomNavigationHostFragmentDirections
                                 .actionBottomNavigationHostFragmentToDetailsFragment(userId));
     }
-
     @Override
     protected UsersPresenter presenter() {
         return usersPresenter;

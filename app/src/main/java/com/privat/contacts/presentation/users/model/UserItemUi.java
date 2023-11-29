@@ -18,4 +18,6 @@ public interface UserItemUi {
     void showText(@NotNull TextView textView);
 
     void showRemove(@NotNull ImageButton imageButton, @NotNull Consumer<Integer> clickAction);
+
+    boolean favorite();
 }

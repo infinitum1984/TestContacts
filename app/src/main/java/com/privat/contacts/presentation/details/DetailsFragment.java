@@ -26,7 +26,6 @@ public class DetailsFragment extends BaseMvpView<DetailsPresenter> implements De
     private final UserParamsAdapter userParamsAdapter = new UserParamsAdapter();
     @Inject
     DetailsPresenter detailsPresenter;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -60,16 +59,10 @@ public class DetailsFragment extends BaseMvpView<DetailsPresenter> implements De
     @Override
     public void showUserParams(List<UserDetailsParamUi> userDetailsParamUiList) {
         userParamsAdapter.updateData(userDetailsParamUiList);
-        userParamsAdapter.notifyDataSetChanged();
     }
 
     @Override
     public int userId() {
         return DetailsFragmentArgs.fromBundle(requireArguments()).getUserId();
-    }
-
-    @Override
-    public void showError(Throwable throwable) {
-
     }
 }

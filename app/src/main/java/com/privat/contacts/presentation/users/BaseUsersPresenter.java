@@ -17,13 +17,11 @@ import io.reactivex.schedulers.Schedulers;
 public class BaseUsersPresenter extends BasePresenter<UsersView> implements UsersPresenter {
     private final UsersRepository usersRepository;
     private final UserDomain.Mapper<UserItemUi> userItemUiMapper;
-
     @Inject
     BaseUsersPresenter(UsersRepository usersRepository, UserDomain.Mapper<UserItemUi> userItemUiMapper) {
         this.usersRepository = usersRepository;
         this.userItemUiMapper = userItemUiMapper;
     }
-
     @Override
     public void onAttach(UsersView mvpView) {
         super.onAttach(mvpView);

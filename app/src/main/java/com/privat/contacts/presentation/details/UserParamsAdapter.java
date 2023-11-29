@@ -17,6 +17,7 @@ public class UserParamsAdapter extends RecyclerView.Adapter<UserParamsAdapter.Us
     public void updateData(List<UserDetailsParamUi> newItems) {
         userItems.clear();
         userItems.addAll(newItems);
+        notifyDataSetChanged();
     }
 
     @NonNull

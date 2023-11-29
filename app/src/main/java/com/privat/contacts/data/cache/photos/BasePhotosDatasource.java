@@ -47,11 +47,9 @@ public class BasePhotosDatasource implements PhotosDatasource {
                             subscriber.onComplete();
 
                         }
-
                         @Override
                         public void onLoadCleared(@Nullable Drawable placeholder) {
                         }
-
                         @Override
                         public void onLoadFailed(@Nullable Drawable errorDrawable) {
                             super.onLoadFailed(errorDrawable);

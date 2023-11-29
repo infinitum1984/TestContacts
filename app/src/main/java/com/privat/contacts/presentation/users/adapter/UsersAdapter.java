@@ -1,10 +1,11 @@
-package com.privat.contacts.presentation.users;
+package com.privat.contacts.presentation.users.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.privat.contacts.databinding.UserItemBinding;
@@ -34,8 +35,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     }
 
     public void updateData(List<UserItemUi> newItems) {
-        userItems.clear();
-        userItems.addAll(newItems);
+        final UsersDiffCallback diffCallback = new UsersDiffCallback(this.userItems, newItems);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+        this.userItems.clear();
+        this.userItems.addAll(newItems);
+        diffResult.dispatchUpdatesTo(this);
     }
 
     @NonNull

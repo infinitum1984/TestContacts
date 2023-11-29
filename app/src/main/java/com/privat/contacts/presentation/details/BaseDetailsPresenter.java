@@ -19,7 +19,6 @@ public class BaseDetailsPresenter extends BasePresenter<DetailsView> implements 
     private final UsersRepository usersRepository;
     private final UserDomain.Mapper<UserDetailsUi> userDetailsUiMapper;
     private final UserDomain.Mapper<List<UserDetailsParamUi>> userDetailsParamUiMapper;
-
     @Inject
     public BaseDetailsPresenter(UsersRepository usersRepository, UserDomain.Mapper<UserDetailsUi> userDetailsUiMapper, UserDomain.Mapper<List<UserDetailsParamUi>> userDetailsParamUiMapper) {
         this.usersRepository = usersRepository;
