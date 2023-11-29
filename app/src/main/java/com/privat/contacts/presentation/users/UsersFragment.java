@@ -50,6 +50,7 @@ public class UsersFragment extends BaseMvpView<UsersPresenter> implements UsersV
             usersPresenter.fetchNewUser();
         });
         usersPresenter.clearTempData();
+        usersPresenter.startObserve();
     }
 
     @Override
@@ -60,12 +61,15 @@ public class UsersFragment extends BaseMvpView<UsersPresenter> implements UsersV
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        usersPresenter.stopObserve();
         binding = null;
     }
     @Override
     public void showUsers(List<UserItemUi> users) {
-        usersAdapter.updateData(users);
-        binding.rvUsers.smoothScrollToPosition(users.size() - 1);
+        if (binding != null) {
+            usersAdapter.updateData(users);
+            binding.rvUsers.smoothScrollToPosition(users.size() - 1);
+        }
     }
     @Override
     public void navigateToUser(int userId) {

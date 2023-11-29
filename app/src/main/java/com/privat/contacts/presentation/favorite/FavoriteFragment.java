@@ -36,6 +36,7 @@ public class FavoriteFragment extends BaseMvpView<FavoritePresenter> implements 
         favoritePresenter.changeFavorite(favoriteClickId);
     });
     private FragmentFavoriteBinding binding;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false);
@@ -47,22 +48,29 @@ public class FavoriteFragment extends BaseMvpView<FavoritePresenter> implements 
         binding.rvUsers.addItemDecoration(itemDecorator);
         return binding.getRoot();
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         favoritePresenter.clearTempData();
+        favoritePresenter.startObserve();
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        favoritePresenter.stopObserve();
     }
+
     @Override
     protected FavoritePresenter presenter() {
         return favoritePresenter;
     }
+
     @Override
     public void showFavoriteList(List<UserItemUi> userItemUis) {
-        usersAdapter.updateData(userItemUis);
+        if (binding != null)
+            usersAdapter.updateData(userItemUis);
     }
 }

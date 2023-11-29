@@ -12,11 +12,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class BaseFavoritePresenter extends BasePresenter<FavoriteView> implements FavoritePresenter {
     private final UsersRepository usersRepository;
     private final UserDomain.Mapper<UserItemUi> userItemUiMapper;
+    private Disposable listObserveDisposable = null;
 
     @Inject
     BaseFavoritePresenter(UsersRepository usersRepository, UserDomain.Mapper<UserItemUi> userItemUiMapper) {
@@ -58,14 +60,21 @@ public class BaseFavoritePresenter extends BasePresenter<FavoriteView> implement
                 ));
     }
 
-    private void startObserve() {
-        compositeDisposable.add(usersRepository.favoriteUsers()
+    @Override
+    public void startObserve() {
+        listObserveDisposable = usersRepository.favoriteUsers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::showItems, error -> {
                     mvpView.showError(error);
-                    Log.e("BaseFavoritePresenter", "error: " + error.getMessage());
-                }));
+                });
+        compositeDisposable.add(listObserveDisposable);
+    }
+
+    @Override
+    public void stopObserve() {
+        if (listObserveDisposable != null)
+            listObserveDisposable.dispose();
     }
 
     private void showItems(List<UserDomain> items) {
