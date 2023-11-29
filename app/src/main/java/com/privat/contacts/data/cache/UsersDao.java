@@ -34,14 +34,22 @@ public interface UsersDao {
     Completable deleteTempEmployment();
     @Query("DELETE FROM subscriptiondb WHERE userId IN (SELECT u.id FROM userdb AS u WHERE u.favorite=0)")
     Completable deleteTempSubscription();
+
     @Query("DELETE FROM userdb WHERE favorite=0")
     Completable deleteTempUsersData();
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     Completable insertAddressDb(AddressDb addressDb);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     Completable insertEmploymentDb(EmploymentDb employmentDb);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     Completable insertSubscriptionDb(SubscriptionDb subscriptionDb);
+
     @Query("UPDATE UserDb SET favorite = (CASE WHEN favorite=1 THEN 0 ELSE 1 END) WHERE id=:userId")
     Completable changeUserFavorite(int userId);
+
+    @Query("SELECT id FROM userdb WHERE favorite=0")
+    Single<List<Integer>> selectTempUserIds();
 }

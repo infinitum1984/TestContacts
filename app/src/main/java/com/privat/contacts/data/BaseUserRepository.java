@@ -10,6 +10,7 @@ import com.privat.contacts.data.cloud.model.UserNet;
 import com.privat.contacts.domain.UsersRepository;
 import com.privat.contacts.domain.model.UserDomain;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -88,7 +89,18 @@ public class BaseUserRepository implements UsersRepository {
 
     @Override
     public Completable clearTempData() {
-        return contactsDao.deleteTempAddress()
+        return contactsDao.selectTempUserIds().flatMapCompletable((ids) -> {
+                    return Completable.create(completable -> {
+                        try {
+                            for (int id : ids) {
+                                photosDatasource.removePhoto(id);
+                            }
+                            completable.onComplete();
+                        } catch (IOException e) {
+                            completable.onError(e);
+                        }
+                    });
+                }).andThen(contactsDao.deleteTempAddress())
                 .andThen(contactsDao.deleteTempEmployment())
                 .andThen(contactsDao.deleteTempSubscription())
                 .andThen(contactsDao.deleteTempUsersData());

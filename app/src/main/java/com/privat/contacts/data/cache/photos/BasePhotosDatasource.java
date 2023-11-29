@@ -74,8 +74,7 @@ public class BasePhotosDatasource implements PhotosDatasource {
     }
 
     @Override
-    public Completable removePhoto(int userId) {
-
-        return null;
+    public void removePhoto(int userId) throws IOException {
+        createImageFile(userId).delete();
     }
 }
