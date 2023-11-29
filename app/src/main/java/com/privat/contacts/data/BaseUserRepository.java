@@ -45,8 +45,10 @@ public class BaseUserRepository implements UsersRepository {
     @Override
     public Completable fetchNewUser() {
         return networkApiService.getNewUser().flatMapCompletable(userNet -> {
-            networkUsersList.add(userNet.map(userDomainMapper));
-            networkUsersSubject.onNext(networkUsersList);
+            synchronized (networkUsersList) {
+                networkUsersList.add(userNet.map(userDomainMapper));
+                networkUsersSubject.onNext(networkUsersList);
+            }
             return Completable.complete();
         });
     }
@@ -65,10 +67,12 @@ public class BaseUserRepository implements UsersRepository {
 
     @Nullable
     private UserDomain getItemByIdFromNetworkList(int userId) {
-        for (UserDomain user :
-                networkUsersList) {
-            if (user.sameId(userId))
-                return user;
+        synchronized (networkUsersList) {
+            for (UserDomain user :
+                    networkUsersList) {
+                if (user.sameId(userId))
+                    return user;
+            }
         }
         return null;
     }
