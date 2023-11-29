@@ -1,6 +1,6 @@
 package com.privat.contacts.presentation.details;
 
-import com.privat.contacts.base.presentation.MvpView;
+import com.privat.contacts.presentation.base.MvpView;
 import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
 import com.privat.contacts.presentation.details.model.UserDetailsUi;
 

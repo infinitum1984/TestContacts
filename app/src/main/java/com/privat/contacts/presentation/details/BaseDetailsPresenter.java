@@ -2,9 +2,9 @@ package com.privat.contacts.presentation.details;
 
 import android.util.Log;
 
-import com.privat.contacts.base.presentation.base.BasePresenter;
 import com.privat.contacts.domain.UsersRepository;
 import com.privat.contacts.domain.model.UserDomain;
+import com.privat.contacts.presentation.base.BasePresenter;
 import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
 import com.privat.contacts.presentation.details.model.UserDetailsUi;
 

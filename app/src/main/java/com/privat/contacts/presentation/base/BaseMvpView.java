@@ -1,11 +1,9 @@
-package com.privat.contacts.base.presentation.base;
+package com.privat.contacts.presentation.base;
 
 import android.app.AlertDialog;
 import android.content.Context;
 
 import com.privat.contacts.R;
-import com.privat.contacts.base.presentation.MvpView;
-import com.privat.contacts.base.presentation.Presenter;
 
 import dagger.android.support.DaggerFragment;
 

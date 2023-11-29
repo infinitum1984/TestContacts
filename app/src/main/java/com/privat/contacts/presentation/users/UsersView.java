@@ -1,6 +1,6 @@
 package com.privat.contacts.presentation.users;
 
-import com.privat.contacts.base.presentation.MvpView;
+import com.privat.contacts.presentation.base.MvpView;
 import com.privat.contacts.presentation.users.model.UserItemUi;
 
 import java.util.List;

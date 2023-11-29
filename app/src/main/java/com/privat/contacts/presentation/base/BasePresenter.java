@@ -1,7 +1,4 @@
-package com.privat.contacts.base.presentation.base;
-
-import com.privat.contacts.base.presentation.MvpView;
-import com.privat.contacts.base.presentation.Presenter;
+package com.privat.contacts.presentation.base;
 
 import io.reactivex.disposables.CompositeDisposable;
 
