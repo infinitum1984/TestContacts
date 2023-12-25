@@ -1,5 +1,7 @@
 package com.privat.contacts.di.modules;
 
+import androidx.annotation.NonNull;
+
 import com.privat.contacts.data.cache.mapper.MapperAddressDomainDb;
 import com.privat.contacts.data.cache.mapper.MapperEmploymentDomainDb;
 import com.privat.contacts.data.cache.mapper.MapperSubscriptionDomainDb;
@@ -22,35 +24,41 @@ import com.privat.contacts.domain.model.EmploymentDomain;
 import com.privat.contacts.domain.model.SubscriptionDomain;
 import com.privat.contacts.domain.model.UserDomain;
 
+import org.jetbrains.annotations.NotNull;
+
 import dagger.Binds;
 import dagger.Module;
+import kotlin.jvm.JvmWildcard;
 
 @Module
 public interface DataMappersModule {
+    @NotNull
     @Binds
-    AddressNet.Mapper<AddressDomain> bindAddressNetDomainMapper(MapperAddressNetDomain addressNetDomain);
+    AddressNet.Mapper<AddressDomain>  bindAddressNetDomainMapper(@NotNull MapperAddressNetDomain addressNetDomain);
+
+    @NonNull
+    @Binds
+    EmploymentNet.Mapper<EmploymentDomain> bindEmploymentNetDomain(@NotNull MapperEmploymentNetDomain employmentNetDomain);
+
 
     @Binds
-    EmploymentNet.Mapper<EmploymentDomain> bindEmploymentNetDomain(MapperEmploymentNetDomain employmentNetDomain);
+    SubscriptionNet.Mapper<SubscriptionDomain> bindSubscriptionNetDomain(@NotNull MapperSubscriptionNetDomain subscriptionNetDomain);
 
     @Binds
-    SubscriptionNet.Mapper<SubscriptionDomain> bindSubscriptionNetDomain(MapperSubscriptionNetDomain subscriptionNetDomain);
+    UserNet.Mapper<UserDomain> bindUserNetDomain(@NotNull MapperUserNetDomain mapperUserNetDomain);
 
     @Binds
-    UserNet.Mapper<UserDomain> bindUserNetDomain(MapperUserNetDomain mapperUserNetDomain);
+    UserFullDb.Mapper<UserDomain> bindUserDbDomain(@NotNull MapperUserDbDomain mapperUserDbDomain);
 
     @Binds
-    UserFullDb.Mapper<UserDomain> bindUserDbDomain(MapperUserDbDomain mapperUserDbDomain);
+    UserDomain.Mapper<UserFullDb> bindUserDomainDb(@NotNull MapperUserDomainDb mapperUserDomainDb);
 
     @Binds
-    UserDomain.Mapper<UserFullDb> bindUserDomainDb(MapperUserDomainDb mapperUserDomainDb);
+    AddressDomain.Mapper<AddressDb> bindAddressDomainDb(@NotNull MapperAddressDomainDb mapperAddressDomainDb);
 
     @Binds
-    AddressDomain.Mapper<AddressDb> bindAddressDomainDb(MapperAddressDomainDb mapperAddressDomainDb);
+    EmploymentDomain.Mapper<EmploymentDb> bindEmploymentDomainDb(@NotNull MapperEmploymentDomainDb mapperEmploymentDomainDb);
 
     @Binds
-    EmploymentDomain.Mapper<EmploymentDb> bindEmploymentDomainDb(MapperEmploymentDomainDb mapperEmploymentDomainDb);
-
-    @Binds
-    SubscriptionDomain.Mapper<SubscriptionDb> bindSubscriptionDomainDb(MapperSubscriptionDomainDb mapperSubscriptionDomainDb);
+    SubscriptionDomain.Mapper<SubscriptionDb> bindSubscriptionDomainDb(@NotNull MapperSubscriptionDomainDb mapperSubscriptionDomainDb);
 }

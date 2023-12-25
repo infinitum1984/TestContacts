@@ -1,5 +1,7 @@
 package com.privat.contacts.data.cloud.mapper;
 
+import androidx.annotation.NonNull;
+
 import com.privat.contacts.data.cloud.model.AddressNet;
 import com.privat.contacts.data.cloud.model.CoordinatesNet;
 import com.privat.contacts.domain.model.AddressDomain;
@@ -13,6 +15,7 @@ public class MapperAddressNetDomain implements AddressNet.Mapper<AddressDomain> 
 
     }
 
+    @NonNull
     @Override
     public AddressDomain map(int userId, String city, String streetName, String streetAddress, String zipCode, String state, String country, CoordinatesNet coordinates) {
         return new BaseAddressDomain(

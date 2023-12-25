@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 public interface AddressDomain {
     @NotNull
-    <T> T map(Mapper<T> mapper);
+    <T> T map(@NotNull Mapper<T> mapper);
 
     interface Mapper<T> {
         @NotNull
