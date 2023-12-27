@@ -1,5 +1,7 @@
 package com.privat.contacts.data.cloud.mapper;
 
+import androidx.annotation.NonNull;
+
 import com.privat.contacts.data.cloud.model.AddressNet;
 import com.privat.contacts.data.cloud.model.CreditCardNet;
 import com.privat.contacts.data.cloud.model.EmploymentNet;
@@ -27,23 +29,24 @@ public class MapperUserNetDomain implements UserNet.Mapper<UserDomain> {
         this.subscriptionDomainMapper = subscriptionDomainMapper;
     }
 
+    @NonNull
     @Override
     public UserDomain map(int id,
-                          String uid,
-                          String password,
-                          String firstName,
-                          String lastName,
-                          String username,
-                          String email,
-                          String avatar,
-                          String gender,
-                          String phoneNumber,
-                          String socialInsuranceNumber,
-                          String dateOfBirth,
-                          EmploymentNet employment,
-                          AddressNet address,
-                          CreditCardNet creditCard,
-                          SubscriptionNet subscription) {
+                          @NonNull String uid,
+                          @NonNull String password,
+                          @NonNull String firstName,
+                          @NonNull String lastName,
+                          @NonNull String username,
+                          @NonNull String email,
+                          @NonNull String avatar,
+                          @NonNull String gender,
+                          @NonNull String phoneNumber,
+                          @NonNull String socialInsuranceNumber,
+                          @NonNull String dateOfBirth,
+                          @NonNull EmploymentNet employment,
+                          @NonNull AddressNet address,
+                          @NonNull CreditCardNet creditCard,
+                          @NonNull SubscriptionNet subscription) {
         return new BaseUserDomain(
                 id,
                 uid,

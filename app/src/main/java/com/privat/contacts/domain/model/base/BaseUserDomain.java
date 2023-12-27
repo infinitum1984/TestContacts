@@ -93,8 +93,9 @@ public class BaseUserDomain implements UserDomain {
         return avatar;
     }
 
+    @NonNull
     @Override
-    public <T> T map(Mapper<T> mapper) {
+    public <T> T map(@NonNull Mapper<T> mapper) {
         return mapper.map(id,
                 uid,
                 password,

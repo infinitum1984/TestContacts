@@ -15,7 +15,7 @@ public class MapperEmploymentDomainDb implements EmploymentDomain.Mapper<Employm
 
     @NonNull
     @Override
-    public EmploymentDb map(int userId, String title, String keySkill) {
+    public EmploymentDb map(int userId, @NonNull String title, @NonNull String keySkill) {
         return new EmploymentDb(
                 userId, title, keySkill
         );

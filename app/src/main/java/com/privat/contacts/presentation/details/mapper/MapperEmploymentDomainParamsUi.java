@@ -18,7 +18,7 @@ public class MapperEmploymentDomainParamsUi implements EmploymentDomain.Mapper<L
     }
     @NonNull
     @Override
-    public List<UserDetailsParamUi> map(int userId, String title, String keySkill) {
+    public List<UserDetailsParamUi> map(int userId, @NonNull String title, @NonNull String keySkill) {
         LinkedList<UserDetailsParamUi> params = new LinkedList<>();
         params.add(new BaseUserParamUi("employment title", title));
         params.add(new BaseUserParamUi("employment skill", keySkill));

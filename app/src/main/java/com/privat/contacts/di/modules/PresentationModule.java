@@ -12,26 +12,38 @@ import com.privat.contacts.presentation.users.BaseUsersPresenter;
 import com.privat.contacts.presentation.users.UsersFragment;
 import com.privat.contacts.presentation.users.UsersPresenter;
 
+import org.jetbrains.annotations.NotNull;
+
 import dagger.Binds;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
 public interface PresentationModule {
+    @NotNull
     @Binds
-    UsersPresenter bindUsersPresenter(BaseUsersPresenter usersPresenter);
+    UsersPresenter bindUsersPresenter(    @NotNull
+                                          BaseUsersPresenter usersPresenter);
     @Binds
-    FavoritePresenter bindFavoritePresenter(BaseFavoritePresenter usersPresenter);
+    FavoritePresenter bindFavoritePresenter(    @NotNull
+                                                BaseFavoritePresenter usersPresenter);
     @Binds
-    DetailsPresenter bindDetailsPresenter(BaseDetailsPresenter detailsPresenter);
+    DetailsPresenter bindDetailsPresenter(    @NotNull
+                                              BaseDetailsPresenter detailsPresenter);
+    @NotNull
+
     @ContributesAndroidInjector
     MainActivity mainActivity();
+    @NotNull
     @ContributesAndroidInjector
     UsersFragment usersFragment();
+    @NotNull
     @ContributesAndroidInjector
     FavoriteFragment favoriteFragment();
+    @NotNull
     @ContributesAndroidInjector
     BottomNavigationHostFragment hostFragment();
+    @NotNull
     @ContributesAndroidInjector
     DetailsFragment detailsFragment();
 }

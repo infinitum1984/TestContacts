@@ -22,6 +22,8 @@ import com.privat.contacts.databinding.FragmentUsersBinding;
 import com.privat.contacts.presentation.host.BottomNavigationHostFragmentDirections;
 import com.privat.contacts.presentation.users.model.UserItemUi;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,8 +31,10 @@ import javax.inject.Inject;
 import dagger.android.support.DaggerFragment;
 
 public class UsersFragment extends DaggerFragment implements UsersView {
+    @NotNull
     @Inject
     public UsersPresenter usersPresenter;
+    @NotNull
     private FragmentUsersBinding binding;
     private final UsersAdapter usersAdapter = new UsersAdapter(onClickId -> {
         usersPresenter.openUser(onClickId);
@@ -82,7 +86,7 @@ public class UsersFragment extends DaggerFragment implements UsersView {
     }
 
     @Override
-    public void showUsers(List<UserItemUi> users) {
+    public void showUsers(@NonNull List<UserItemUi> users) {
         usersAdapter.updateData(users);
         usersAdapter.notifyDataSetChanged();
     }

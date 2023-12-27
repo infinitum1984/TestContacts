@@ -17,7 +17,7 @@ public class MapperAddressNetDomain implements AddressNet.Mapper<AddressDomain> 
 
     @NonNull
     @Override
-    public AddressDomain map(int userId, String city, String streetName, String streetAddress, String zipCode, String state, String country, CoordinatesNet coordinates) {
+    public AddressDomain map(int userId, @NonNull String city, @NonNull String streetName, @NonNull String streetAddress, @NonNull String zipCode, @NonNull String state, @NonNull String country, @NonNull CoordinatesNet coordinates) {
         return new BaseAddressDomain(
                 userId, city,
                 streetName,

@@ -1,5 +1,7 @@
 package com.privat.contacts.data.cloud.mapper;
 
+import androidx.annotation.NonNull;
+
 import com.privat.contacts.data.cloud.model.EmploymentNet;
 import com.privat.contacts.domain.model.EmploymentDomain;
 import com.privat.contacts.domain.model.base.BaseEmploymentDomain;
@@ -12,8 +14,9 @@ public class MapperEmploymentNetDomain implements EmploymentNet.Mapper<Employmen
 
     }
 
+    @NonNull
     @Override
-    public EmploymentDomain map(int userId, String title, String keySkill) {
+    public EmploymentDomain map(int userId, @NonNull String title, @NonNull String keySkill) {
         return new BaseEmploymentDomain(userId, title, keySkill);
     }
 }

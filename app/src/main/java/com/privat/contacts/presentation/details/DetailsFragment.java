@@ -59,7 +59,7 @@ public class DetailsFragment extends DaggerFragment implements DetailsView {
     }
 
     @Override
-    public void showUser(UserDetailsUi userDetailsUi) {
+    public void showUser(@NonNull UserDetailsUi userDetailsUi) {
         userDetailsUi.loadAvatar(binding.ivAvatar);
         userDetailsUi.showFavorite(binding.fbFavorite);
         userDetailsUi.showName(binding.tvName);

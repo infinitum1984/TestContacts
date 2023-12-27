@@ -40,25 +40,26 @@ public interface DataMappersModule {
     @Binds
     EmploymentNet.Mapper<EmploymentDomain> bindEmploymentNetDomain(@NotNull MapperEmploymentNetDomain employmentNetDomain);
 
-
+    @NotNull
     @Binds
     SubscriptionNet.Mapper<SubscriptionDomain> bindSubscriptionNetDomain(@NotNull MapperSubscriptionNetDomain subscriptionNetDomain);
-
+    @NotNull
     @Binds
     UserNet.Mapper<UserDomain> bindUserNetDomain(@NotNull MapperUserNetDomain mapperUserNetDomain);
 
+    @NotNull
     @Binds
     UserFullDb.Mapper<UserDomain> bindUserDbDomain(@NotNull MapperUserDbDomain mapperUserDbDomain);
-
+    @NotNull
     @Binds
     UserDomain.Mapper<UserFullDb> bindUserDomainDb(@NotNull MapperUserDomainDb mapperUserDomainDb);
-
+    @NotNull
     @Binds
     AddressDomain.Mapper<AddressDb> bindAddressDomainDb(@NotNull MapperAddressDomainDb mapperAddressDomainDb);
-
+    @NotNull
     @Binds
     EmploymentDomain.Mapper<EmploymentDb> bindEmploymentDomainDb(@NotNull MapperEmploymentDomainDb mapperEmploymentDomainDb);
-
+    @NotNull
     @Binds
     SubscriptionDomain.Mapper<SubscriptionDb> bindSubscriptionDomainDb(@NotNull MapperSubscriptionDomainDb mapperSubscriptionDomainDb);
 }

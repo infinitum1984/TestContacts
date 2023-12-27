@@ -32,22 +32,22 @@ public class MapperUserDomainDb implements UserDomain.Mapper<UserFullDb> {
     @NonNull
     @Override
     public UserFullDb map(int id,
-                          String uid,
-                          String password,
-                          String firstName,
-                          String lastName,
-                          String username,
-                          String email,
-                          String avatar,
-                          String gender,
-                          String phoneNumber,
-                          String socialInsuranceNumber,
-                          String dateOfBirth,
-                          String cardNumber,
+                          @NonNull String uid,
+                          @NonNull String password,
+                          @NonNull String firstName,
+                          @NonNull String lastName,
+                          @NonNull String username,
+                          @NonNull String email,
+                          @NonNull String avatar,
+                          @NonNull String gender,
+                          @NonNull String phoneNumber,
+                          @NonNull String socialInsuranceNumber,
+                          @NonNull String dateOfBirth,
+                          @NonNull String cardNumber,
                           boolean favorite,
-                          AddressDomain address,
-                          EmploymentDomain employment,
-                          SubscriptionDomain subscription) {
+                          @NonNull AddressDomain address,
+                          @NonNull EmploymentDomain employment,
+                          @NonNull SubscriptionDomain subscription) {
         return new UserFullDb(
                 new UserDb(
                         id,

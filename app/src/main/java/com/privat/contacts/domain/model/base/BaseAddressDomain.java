@@ -48,7 +48,7 @@ public class BaseAddressDomain implements AddressDomain {
 
     @NonNull
     @Override
-    public <T> T map(Mapper<T> mapper) {
+    public <T> T map(@NonNull Mapper<T> mapper) {
         return mapper.map(
                 userId,
                 city,

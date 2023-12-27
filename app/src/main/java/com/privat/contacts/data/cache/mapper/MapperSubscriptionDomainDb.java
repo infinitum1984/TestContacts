@@ -16,10 +16,10 @@ public class MapperSubscriptionDomainDb implements SubscriptionDomain.Mapper<Sub
     @NonNull
     @Override
     public SubscriptionDb map(int userId,
-                              String plan,
-                              String status,
-                              String paymentMethod,
-                              String term) {
+                              @NonNull String plan,
+                              @NonNull String status,
+                              @NonNull String paymentMethod,
+                              @NonNull String term) {
         return new SubscriptionDb(
                 userId,
                 plan,

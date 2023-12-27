@@ -1,5 +1,7 @@
 package com.privat.contacts.data.cache.mapper;
 
+import androidx.annotation.NonNull;
+
 import com.privat.contacts.data.cache.model.AddressDb;
 import com.privat.contacts.data.cache.model.EmploymentDb;
 import com.privat.contacts.data.cache.model.SubscriptionDb;
@@ -19,8 +21,9 @@ public class MapperUserDbDomain implements UserFullDb.Mapper<UserDomain> {
 
     }
 
+    @NonNull
     @Override
-    public UserDomain map(UserDb user, AddressDb address, EmploymentDb employment, SubscriptionDb subscription) {
+    public UserDomain map(@NonNull UserDb user, @NonNull AddressDb address, @NonNull EmploymentDb employment, @NonNull SubscriptionDb subscription) {
         return new BaseUserDomain(
                 user.getId(),
                 user.getUid(),

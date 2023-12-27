@@ -1,5 +1,7 @@
 package com.privat.contacts.data.cloud.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.jetbrains.annotations.NotNull;
@@ -16,7 +18,7 @@ public class EmploymentNet {
         this.keySkill = keySkill;
     }
 
-    public <T> T map(int userId, Mapper<T> mapper) {
+    public <T> T map(int userId, @NonNull Mapper<T> mapper) {
         return mapper.map(userId, title, keySkill);
     }
 

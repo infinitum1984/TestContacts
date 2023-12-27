@@ -2,6 +2,8 @@ package com.privat.contacts.presentation.details.model.base;
 
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
 
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +20,7 @@ public class BaseUserParamUi implements UserDetailsParamUi {
     }
 
     @Override
-    public void showParam(TextView textView) {
+    public void showParam(@NonNull TextView textView) {
         textView.setText(key+": "+value);
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
-    private final ArrayList<UserItemUi> userItems = new ArrayList();
+    private final ArrayList<UserItemUi> userItems = new ArrayList<>();
     private final Consumer<Integer> deleteClick;
     private final Consumer<Integer> onClick;
     private final boolean showingFavorite;
@@ -33,7 +33,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         this.onClick = onClick;
     }
 
-    public void updateData(List<UserItemUi> newItems) {
+    public void updateData(@NonNull List<UserItemUi> newItems) {
         userItems.clear();
         userItems.addAll(newItems);
     }
@@ -56,6 +56,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder {
+        @NonNull
         private final UserItemBinding userItemBinding;
 
         UserViewHolder(@NonNull UserItemBinding userItemBinding) {
@@ -63,7 +64,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
             this.userItemBinding = userItemBinding;
         }
 
-        void bind(UserItemUi userItemUi) {
+        void bind(@NonNull UserItemUi userItemUi) {
             userItemUi.showTitle(userItemBinding.tvName);
             userItemUi.showText(userItemBinding.tvPhone);
             userItemUi.loadAvatar(userItemBinding.ivAvatar);

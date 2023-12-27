@@ -38,9 +38,9 @@ public class MapperUserDomainParamsUi implements UserDomain.Mapper<List<UserDeta
                                         String gender, String phoneNumber,
                                         String socialInsuranceNumber,
                                         String dateOfBirth, String cardNumber,
-                                        boolean favorite, AddressDomain address,
-                                        EmploymentDomain employment,
-                                        SubscriptionDomain subscription) {
+                                        boolean favorite, @NonNull AddressDomain address,
+                                        @NonNull EmploymentDomain employment,
+                                        @NonNull SubscriptionDomain subscription) {
         LinkedList<UserDetailsParamUi> params = new LinkedList<>();
         params.add(new BaseUserParamUi("Id",String.valueOf(id)));
         params.add(new BaseUserParamUi("Uid",String.valueOf(uid)));

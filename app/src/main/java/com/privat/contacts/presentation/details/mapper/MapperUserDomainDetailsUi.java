@@ -31,7 +31,7 @@ public class MapperUserDomainDetailsUi implements UserDomain.Mapper<UserDetailsU
                              String email,
                              String avatar,
                              String gender,
-                             String phoneNumber,
+                             @NonNull String phoneNumber,
                              String socialInsuranceNumber,
                              String dateOfBirth,
                              String cardNumber,

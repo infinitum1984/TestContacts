@@ -22,7 +22,7 @@ public class BaseEmploymentDomain implements EmploymentDomain {
 
     @NonNull
     @Override
-    public <T> T map(Mapper<T> mapper) {
+    public <T> T map(@NonNull Mapper<T> mapper) {
         return mapper.map(userId, title, keySkill);
     }
 }

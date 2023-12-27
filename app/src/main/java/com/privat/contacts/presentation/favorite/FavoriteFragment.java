@@ -38,6 +38,7 @@ public class FavoriteFragment extends DaggerFragment implements FavoriteView {
     }, favoriteClickId -> {
         favoritePresenter.changeFavorite(favoriteClickId);
     });
+    @Nullable
     private FragmentFavoriteBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -77,7 +78,7 @@ public class FavoriteFragment extends DaggerFragment implements FavoriteView {
     }
 
     @Override
-    public void showFavoriteList(List<UserItemUi> userItemUis) {
+    public void showFavoriteList(@NonNull List<UserItemUi> userItemUis) {
         usersAdapter.updateData(userItemUis);
         usersAdapter.notifyDataSetChanged();
     }

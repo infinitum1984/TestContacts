@@ -2,6 +2,9 @@ package com.privat.contacts.presentation.favorite;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.privat.contacts.domain.UsersRepository;
 import com.privat.contacts.domain.model.UserDomain;
 import com.privat.contacts.presentation.users.model.UserItemUi;
@@ -18,6 +21,7 @@ public class BaseFavoritePresenter implements FavoritePresenter {
     private final UsersRepository usersRepository;
     private final UserDomain.Mapper<UserItemUi> userItemUiMapper;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    @Nullable
     private FavoriteView mvpView;
 
     @Inject
@@ -65,7 +69,7 @@ public class BaseFavoritePresenter implements FavoritePresenter {
                 }));
     }
 
-    private void showItems(List<UserDomain> items) {
+    private void showItems(@NonNull List<UserDomain> items) {
         mvpView.showFavoriteList(UserDomain.mapList(items, userItemUiMapper));
     }
 }

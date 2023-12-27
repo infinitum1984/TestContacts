@@ -5,6 +5,8 @@ import com.privat.contacts.data.cache.photos.BasePhotosDatasource;
 import com.privat.contacts.data.cache.photos.PhotosDatasource;
 import com.privat.contacts.domain.UsersRepository;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.inject.Singleton;
 
 import dagger.Binds;
@@ -12,10 +14,14 @@ import dagger.Module;
 
 @Module
 public interface RepositoriesModule {
+    @NotNull
     @Singleton
     @Binds
-    UsersRepository bindUserRepository(BaseUserRepository userRepository);
+    UsersRepository bindUserRepository(    @NotNull
+                                           BaseUserRepository userRepository);
 
     @Binds
-    PhotosDatasource bindPhotoDatasource(BasePhotosDatasource photosDatasource);
+    @NotNull
+    PhotosDatasource bindPhotoDatasource(    @NotNull
+                                             BasePhotosDatasource photosDatasource);
 }

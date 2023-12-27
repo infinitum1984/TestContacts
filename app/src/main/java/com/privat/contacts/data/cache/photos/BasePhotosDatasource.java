@@ -62,6 +62,7 @@ public class BasePhotosDatasource implements PhotosDatasource {
 
     }
 
+    @NonNull
     private File createImageFile(int userId) throws IOException {
         File storageDir = new File(context.getExternalCacheDir(), "images");
         if (!storageDir.exists())

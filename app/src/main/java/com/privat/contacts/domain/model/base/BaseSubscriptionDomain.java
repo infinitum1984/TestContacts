@@ -1,5 +1,7 @@
 package com.privat.contacts.domain.model.base;
 
+import androidx.annotation.NonNull;
+
 import com.privat.contacts.domain.model.SubscriptionDomain;
 
 import org.jetbrains.annotations.NotNull;
@@ -26,7 +28,7 @@ public class BaseSubscriptionDomain implements SubscriptionDomain {
 
     @NotNull
     @Override
-    public <T> T map(Mapper<T> mapper) {
+    public <T> T map(@NonNull Mapper<T> mapper) {
         return mapper.map(userId, plan, status, paymentMethod, term);
     }
 }

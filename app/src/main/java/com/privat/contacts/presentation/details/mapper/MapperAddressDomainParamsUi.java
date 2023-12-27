@@ -17,12 +17,12 @@ public class MapperAddressDomainParamsUi implements AddressDomain.Mapper<List<Us
     @NonNull
     @Override
     public List<UserDetailsParamUi> map(int userId,
-                                        String city,
-                                        String streetName,
-                                        String streetAddress,
-                                        String zipCode,
+                                        @NonNull String city,
+                                        @NonNull String streetName,
+                                        @NonNull String streetAddress,
+                                        @NonNull String zipCode,
                                         String state,
-                                        String country,
+                                        @NonNull String country,
                                         double coordinateLat,
                                         double coordinateLng) {
         LinkedList<UserDetailsParamUi> params = new LinkedList<>();

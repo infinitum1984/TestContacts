@@ -1,5 +1,7 @@
 package com.privat.contacts.data.cloud.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.jetbrains.annotations.NotNull;
@@ -46,21 +48,21 @@ public class UserNet {
 
 
     public UserNet(int id,
-                   String uid,
-                   String password,
-                   String firstName,
-                   String lastName,
-                   String username,
-                   String email,
-                   String avatar,
-                   String gender,
-                   String phoneNumber,
-                   String socialInsuranceNumber,
-                   String dateOfBirth,
-                   EmploymentNet employment,
-                   AddressNet address,
-                   CreditCardNet creditCard,
-                   SubscriptionNet subscription) {
+                   @NonNull String uid,
+                   @NonNull String password,
+                   @NonNull String firstName,
+                   @NonNull String lastName,
+                   @NonNull String username,
+                   @NonNull String email,
+                   @NonNull String avatar,
+                   @NonNull String gender,
+                   @NonNull String phoneNumber,
+                   @NonNull String socialInsuranceNumber,
+                   @NonNull String dateOfBirth,
+                   @NonNull EmploymentNet employment,
+                   @NonNull AddressNet address,
+                   @NonNull CreditCardNet creditCard,
+                   @NonNull SubscriptionNet subscription) {
         this.id = id;
         this.uid = uid;
         this.password = password;
@@ -79,7 +81,7 @@ public class UserNet {
         this.subscription = subscription;
     }
 
-    public <T> T map(Mapper<T> mapper) {
+    public <T> T map(@NonNull Mapper<T> mapper) {
         return mapper.map(id,
                 uid,
                 password,

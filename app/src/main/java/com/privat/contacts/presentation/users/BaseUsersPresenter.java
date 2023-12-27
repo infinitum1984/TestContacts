@@ -2,6 +2,9 @@ package com.privat.contacts.presentation.users;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.privat.contacts.domain.UsersRepository;
 import com.privat.contacts.domain.model.UserDomain;
 import com.privat.contacts.presentation.users.model.UserItemUi;
@@ -20,6 +23,7 @@ public class BaseUsersPresenter implements UsersPresenter {
     private final UsersRepository usersRepository;
     private final UserDomain.Mapper<UserItemUi> userItemUiMapper;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    @Nullable
     private UsersView mvpView;
     @Inject
     BaseUsersPresenter(UsersRepository usersRepository, UserDomain.Mapper<UserItemUi> userItemUiMapper) {
@@ -45,7 +49,7 @@ public class BaseUsersPresenter implements UsersPresenter {
                 }));
     }
 
-    private void showItems(List<UserDomain> items) {
+    private void showItems(@NonNull List<UserDomain> items) {
         mvpView.showUsers(UserDomain.mapList(items, userItemUiMapper));
     }
 

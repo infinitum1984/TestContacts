@@ -2,6 +2,7 @@ package com.privat.contacts.di.modules;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Room;
 
 import com.privat.contacts.data.cache.UsersDao;
@@ -14,16 +15,17 @@ import dagger.Provides;
 
 @Module
 public class DatabaseModule {
+    @NonNull
     @Singleton
     @Provides
-    public AppDatabase provideDatabase(Context context) {
+    public AppDatabase provideDatabase(@NonNull Context context) {
         return Room.databaseBuilder(context, AppDatabase.class, "privat_contacts")
                 .build();
     }
 
     @Singleton
     @Provides
-    public UsersDao provideUsersDao(AppDatabase database) {
+    public UsersDao provideUsersDao(@NonNull AppDatabase database) {
         return database.provideUsersDao();
     }
 }

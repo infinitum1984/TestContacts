@@ -1,5 +1,6 @@
 package com.privat.contacts.data;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.privat.contacts.data.cache.UsersDao;
@@ -51,6 +52,7 @@ public class BaseUserRepository implements UsersRepository {
         });
     }
 
+    @NonNull
     @Override
     public Observable<List<UserDomain>> networkUsers() {
         return networkUsersSubject;

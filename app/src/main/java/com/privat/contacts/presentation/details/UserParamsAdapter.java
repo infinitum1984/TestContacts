@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 
 public class UserParamsAdapter extends RecyclerView.Adapter<UserParamsAdapter.UserViewHolder> {
     private final ArrayList<UserDetailsParamUi> userItems = new ArrayList();
-    public void updateData(List<UserDetailsParamUi> newItems) {
+    public void updateData(@NonNull List<UserDetailsParamUi> newItems) {
         userItems.clear();
         userItems.addAll(newItems);
     }
@@ -41,6 +41,7 @@ public class UserParamsAdapter extends RecyclerView.Adapter<UserParamsAdapter.Us
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder {
+        @NonNull
         private final UserParamItemBinding userItemBinding;
 
         UserViewHolder(@NonNull UserParamItemBinding userItemBinding) {
@@ -48,7 +49,7 @@ public class UserParamsAdapter extends RecyclerView.Adapter<UserParamsAdapter.Us
             this.userItemBinding = userItemBinding;
         }
 
-        void bind(UserDetailsParamUi userItemUi) {
+        void bind(@NonNull UserDetailsParamUi userItemUi) {
             userItemUi.showParam(userItemBinding.tvName);
         }
     }

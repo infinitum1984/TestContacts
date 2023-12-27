@@ -41,8 +41,8 @@ public class AddressNet {
         this.country = country;
         this.coordinates = coordinates;
     }
-
-    public <T> T map(int userId, Mapper<T> mapper) {
+    @NotNull
+    public <T> T map(int userId,@NotNull Mapper<T> mapper) {
         return mapper.map(
                 userId,
                 city,
@@ -55,13 +55,14 @@ public class AddressNet {
     }
 
     public interface Mapper<T> {
+        @NotNull
         T map(int userId,
-              @NonNull String city,
-              @NonNull String streetName,
-              @NonNull String streetAddress,
-              @NonNull String zipCode,
-              @NonNull String state,
-              @NonNull String country,
-              @NonNull CoordinatesNet coordinates);
+              @NotNull String city,
+              @NotNull String streetName,
+              @NotNull String streetAddress,
+              @NotNull String zipCode,
+              @NotNull String state,
+              @NotNull String country,
+              @NotNull CoordinatesNet coordinates);
     }
 }

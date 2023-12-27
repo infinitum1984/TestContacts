@@ -14,6 +14,8 @@ import com.privat.contacts.presentation.details.model.UserDetailsUi;
 import com.privat.contacts.presentation.users.mapper.MapperUserDomainUiItem;
 import com.privat.contacts.presentation.users.model.UserItemUi;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import dagger.Binds;
@@ -21,21 +23,22 @@ import dagger.Module;
 
 @Module
 public interface PresentationMappersModule {
+    @NotNull
     @Binds
-    UserDomain.Mapper<UserItemUi> bindUserDomainItemUi(MapperUserDomainUiItem mapperUserDomainUiItem);
-
+    UserDomain.Mapper<UserItemUi> bindUserDomainItemUi(@NotNull MapperUserDomainUiItem mapperUserDomainUiItem);
+    @NotNull
     @Binds
-    UserDomain.Mapper<UserDetailsUi> bindUserDomainDetailsUi(MapperUserDomainDetailsUi mapperUserDomainDetailsUi);
-
+    UserDomain.Mapper<UserDetailsUi> bindUserDomainDetailsUi(@NotNull MapperUserDomainDetailsUi mapperUserDomainDetailsUi);
+    @NotNull
     @Binds
-    UserDomain.Mapper<List<UserDetailsParamUi>> bindUserDomainParamsUi(MapperUserDomainParamsUi userDomainParamsUi);
-
+    UserDomain.Mapper<List<UserDetailsParamUi>> bindUserDomainParamsUi(@NotNull MapperUserDomainParamsUi userDomainParamsUi);
+    @NotNull
     @Binds
-    AddressDomain.Mapper<List<UserDetailsParamUi>> bindAddressDomainParamsUi(MapperAddressDomainParamsUi addressDomainParamsUi);
-
+    AddressDomain.Mapper<List<UserDetailsParamUi>> bindAddressDomainParamsUi(@NotNull MapperAddressDomainParamsUi addressDomainParamsUi);
+    @NotNull
     @Binds
     SubscriptionDomain.Mapper<List<UserDetailsParamUi>> bindSubscriptionDomainParamsUi(MapperSubscriptionDomainParamsUi subscriptionDomainParamsUi);
-
+    @NotNull
     @Binds
     EmploymentDomain.Mapper<List<UserDetailsParamUi>> bindEmploymentDomainParamsUi(MapperEmploymentDomainParamsUi mapperEmploymentDomainParamsUi);
 }

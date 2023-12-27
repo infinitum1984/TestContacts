@@ -4,6 +4,8 @@ import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.privat.contacts.R;
@@ -30,24 +32,24 @@ public class BaseUserDetailsParamUi implements UserDetailsUi {
     }
 
     @Override
-    public void showName(TextView textView) {
+    public void showName(@NonNull TextView textView) {
         textView.setText(name);
     }
 
     @Override
-    public void showPhone(TextView textView) {
+    public void showPhone(@NonNull TextView textView) {
         textView.setText(phone);
     }
 
     @Override
-    public void loadAvatar(ImageView imageView) {
+    public void loadAvatar(@NonNull ImageView imageView) {
         File storageDir = new File(imageView.getContext().getExternalCacheDir(), "images");
         File imgFile = new File(storageDir, userId + ".png");
         Glide.with(imageView.getContext()).load(Uri.fromFile(imgFile)).placeholder(R.drawable.ic_person).into(imageView);
     }
 
     @Override
-    public void showFavorite(FloatingActionButton floatingActionButton) {
+    public void showFavorite(@NonNull FloatingActionButton floatingActionButton) {
         if (favorite)
             floatingActionButton.setImageResource(R.drawable.ic_favorite);
         else

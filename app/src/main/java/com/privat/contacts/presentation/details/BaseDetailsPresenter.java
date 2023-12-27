@@ -2,6 +2,8 @@ package com.privat.contacts.presentation.details;
 
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import com.privat.contacts.domain.UsersRepository;
 import com.privat.contacts.domain.model.UserDomain;
 import com.privat.contacts.presentation.details.model.UserDetailsParamUi;
@@ -21,6 +23,7 @@ public class BaseDetailsPresenter implements DetailsPresenter {
     private final UserDomain.Mapper<List<UserDetailsParamUi>> userDetailsParamUiMapper;
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    @Nullable
     private DetailsView mvpView;
 
     @Inject

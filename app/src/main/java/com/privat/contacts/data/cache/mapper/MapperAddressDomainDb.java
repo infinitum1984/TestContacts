@@ -16,12 +16,12 @@ public class MapperAddressDomainDb implements AddressDomain.Mapper<AddressDb> {
     @NonNull
     @Override
     public AddressDb map(int userId,
-                         String city,
-                         String streetName,
-                         String streetAddress,
-                         String zipCode,
-                         String state,
-                         String country,
+                         @NonNull String city,
+                         @NonNull String streetName,
+                         @NonNull String streetAddress,
+                         @NonNull String zipCode,
+                         @NonNull String state,
+                         @NonNull String country,
                          double coordinateLat,
                          double coordinateLng) {
         return new AddressDb(

@@ -1,5 +1,7 @@
 package com.privat.contacts.di.modules;
 
+import androidx.annotation.NonNull;
+
 import com.privat.contacts.data.cloud.NetworkApiService;
 
 import dagger.Module;
@@ -10,19 +12,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class NetworkModule {
+    @NonNull
     @Provides
     public RxJava2CallAdapterFactory provideRxJava2CallAdapterFactory() {
         return RxJava2CallAdapterFactory.create();
     }
 
+    @NonNull
     @Provides
     public GsonConverterFactory provideGsonConverterFactory() {
         return GsonConverterFactory.create();
     }
 
+    @NonNull
     @Provides
-    public Retrofit provideRetrofit(GsonConverterFactory gsonConverterFactory,
-                                    RxJava2CallAdapterFactory rxJava2CallAdapterFactory) {
+    public Retrofit provideRetrofit(@NonNull GsonConverterFactory gsonConverterFactory,
+                                    @NonNull RxJava2CallAdapterFactory rxJava2CallAdapterFactory) {
         return new Retrofit.Builder()
                 .addConverterFactory(gsonConverterFactory)
                 .addCallAdapterFactory(rxJava2CallAdapterFactory)
@@ -30,8 +35,9 @@ public class NetworkModule {
                 .build();
     }
 
+    @NonNull
     @Provides
-    public NetworkApiService provideNetworkApiService(Retrofit retrofit) {
+    public NetworkApiService provideNetworkApiService(@NonNull Retrofit retrofit) {
         return retrofit.create(NetworkApiService.class);
     }
 

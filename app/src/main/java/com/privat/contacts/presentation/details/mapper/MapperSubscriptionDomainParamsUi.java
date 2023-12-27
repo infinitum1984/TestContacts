@@ -18,7 +18,7 @@ public class MapperSubscriptionDomainParamsUi implements SubscriptionDomain.Mapp
     }
     @NonNull
     @Override
-    public List<UserDetailsParamUi> map(int userId, String plan, String status, String paymentMethod, String term) {
+    public List<UserDetailsParamUi> map(int userId, @NonNull String plan, @NonNull String status, @NonNull String paymentMethod, @NonNull String term) {
         LinkedList<UserDetailsParamUi> params = new LinkedList<>();
         params.add(new BaseUserParamUi("subscription plan", plan));
         params.add(new BaseUserParamUi("subscription status", status));
